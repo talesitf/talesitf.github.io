@@ -1,0 +1,127 @@
+body, html,main {
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-color: #1b2936;
+}
+.simbolo_config {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    margin: 1rem;
+    height: 3rem;
+    width: auto;   
+}
+
+.linha {
+    display: flex;
+    flex-direction: row;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.coluna li{
+    border: 0.1rem solid;
+    border-radius: 1rem;
+    width: 60%;
+    padding: 1rem;
+}
+
+h1 {
+    font-family: 'Arvo', serif;
+    width: 100%;
+    text-align: center;
+    color: #f2f5f6;
+}
+
+header {
+    height: 11.7%;
+    width: 100%;
+    align-items: center;
+    border-bottom: 0.5rem solid;
+    padding-bottom: 1%;
+    font-size: xx-large;
+    border-color: #7a8c98;
+    background-color: #233446;
+}
+
+.emerg {
+    font-size: x-large;
+    text-align: center;
+    margin-top: 20%;
+    margin-bottom: 5%;
+    font-family: 'Arvo', serif;
+    color: #f2f5f6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.img_emerg {
+    width: 25%;
+    height: auto;
+    margin-left: 10%;
+}
+
+.tur {
+    font-size: x-large;
+    text-align: center;
+    margin-top: 20%;
+    margin-bottom: 5%;
+    font-family: 'Arvo', serif;
+    color: #f2f5f6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.img_tur {
+    width: 40%;
+    height: auto;
+    margin-left: 20%;
+}
+
+.comp {
+    font-size: x-large;
+    text-align: center;
+    margin-top: 20%;
+    margin-bottom: 5%;
+    font-family: 'Arvo', serif;
+    color: #f2f5f6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.img_comp {
+    width: 30%;
+    height: auto;
+    margin-left: 20%;
+}
+
+.padrao {
+    text-decoration: none;
+    color: #f2f5f6;
+}
+.simbolo_home {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    height: 3rem;
+    width: auto;   
+}
+.nome_CoChange {
+    font-size: xx-large;
+    color: #f2f5f6;
+}
+

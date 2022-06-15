@@ -1,0 +1,116 @@
+body,main,html{
+    height: 100%;
+    width: 100%;
+    color: #f2f5f6;
+}
+body{
+    background-color: #1b2936;
+}
+header{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    border-bottom: .1rem solid #f2f5f6;
+    background-color: #233446;
+}
+
+h1{
+    position: absolute;
+    padding: 1rem;
+    font-size: xx-large;
+    font-family: 'Arvo', serif;
+}
+
+.home{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 3rem;
+    width: auto;
+}
+
+.set{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    width: auto;
+}
+
+.icon{
+    height: 1.8rem;
+    width: auto;
+}
+
+.stories{
+    border-radius: 50%;
+    height: 4rem;
+    width: auto;
+    padding: 10px;
+    border: #f2f5f6 solid .05rem;
+    background-color: #233446;
+}
+.profile{
+    position: relative;
+    top: .5rem;
+    left: 0rem;
+    height: 6rem;
+    width: auto;
+}
+
+h2{
+    padding: 1rem;
+    background-color: #233446;
+    border-radius: .5rem;
+    border: #f2f5f6 solid .05rem;
+    width: 80%;
+    font-family: 'Arvo', serif;
+    font-size: x-large;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    justify-content: space-evenly;
+}
+
+img{
+    margin: 0.3rem;
+}
+
+.linha{
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    justify-content: space-evenly;
+}
+
+.coluna{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+.linha2{
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    justify-content: space-evenly;
+    width: 100%; 
+    left: 0;
+    align-self: flex-start;
+}
+
+.name{
+    height: 50%;
+    font-size: 120%;
+    text-align: center;
+    font-family: 'Arvo', serif;
+}
