@@ -1,3 +1,16 @@
+/* Container para centralizar conteúdo */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
 /* Reset and Global Styles - Tema Retrô Limpo */
 html {
   width: 100%;
@@ -11,17 +24,15 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  line-height: 1.6;
-  color: #f8fafc;
-  background: #1e293b;
+  font-family: 'JetBrains Mono', 'Courier New', 'Monaco', 'Consolas', monospace;
+    line-height: 1.5;
+    color: #e2e8f0;
+    background: #050c16;
   scroll-behavior: smooth;
   width: 100%;
   overflow-x: hidden;
-
-  /* Padrão pontilhado muito sutil no fundo */
-  background-image: radial-gradient(circle, #334155 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-image: radial-gradient(circle, rgba(37, 99, 235, 0.4) 1px, transparent 1px);
+    background-size: 60px 60px;
   background-attachment: fixed;
 }
 
@@ -31,218 +42,367 @@ body {
   margin: 0 auto;
 }
 
-/* Utility Classes - Layout Centralizado */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  width: 100%;
+/* Variáveis CSS para facilitar manutenção */
+:root {
+  --color-primary: #10213a;
+  /* azul escuro dominante */
+  --color-primary-alt: #1e3a5f;
+  /* variação leve */
+  --color-accent: #3b82f6;
+  /* destaque moderado */
+  --color-accent-soft: rgba(59, 130, 246, 0.12);
+  --color-background: #0c182b;
+  --color-surface: #13263d;
+  --color-surface-alt: #162d48;
+  --color-border: #1f3d5c;
+  --color-border-strong: #2c567e;
+  --color-text-primary: #e5edf5;
+  --color-text-secondary: #9fb3c7;
+  --color-text-muted: #6d7f92;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 }
 
-.section {
-  padding: 6rem 0;
-  position: relative;
-  width: 100%;
-
-  /* NOVO – flexbox para centralizar */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-background: transparent;
-}
-
-.section--alt {
-  background: transparent;
-  border-top: 1px solid rgba(65, 105, 225, 0.2);
-  border-bottom: 1px solid rgba(65, 105, 225, 0.2);
-
-  /* Centralização igual às outras seções */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.section--bordered {
-  background: transparent;
-  border-top: 2px solid rgba(65, 105, 225, 0.3);
-  border-bottom: 1px solid rgba(71, 85, 105, 0.3);
-
-  /* Centralização igual às outras seções */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-/* Typography Limpa */
+/* Global ajustes para clean look */
+/* Headings mais discretos */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin-bottom: 1rem;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #f8fafc;
+  letter-spacing: 1px;
+    text-transform: none;
+    color: var(--color-text-primary);
 }
 
 h1 {
-  font-size: 3.5rem;
-  color: #f8fafc;
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: clamp(2.8rem, 6vw, 3.6rem);
 }
 
 h2 {
-  font-size: 2.5rem;
-  color: #4169E1;
+  font-size: clamp(2rem, 4.5vw, 2.6rem);
+    color: var(--color-accent);
 }
 
 h3 {
-  font-size: 2rem;
-  color: #6495ED;
+  font-size: 1.6rem;
+    color: var(--color-text-primary);
 }
 
 p {
-  margin-bottom: 1rem;
-  color: #cbd5e1;
+  color: var(--color-text-secondary);
 }
 
-/* Links e Elementos Interativos */
+/* Links simplificados */
 a {
-  color: #60a5fa;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  color: var(--color-accent);
+    text-transform: none;
+    letter-spacing: .5px;
+    font-weight: 500;
 }
 
 a:hover {
-  color: #4169E1;
+  color: #1d4ed8;
+    text-shadow: none;
 }
-/* Botões Retrô Limpos */
+/* Botões simplificados */
 .btn {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background: transparent;
-  border: 2px solid #4169E1;
-  color: #4169E1;
+  border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    background: var(--color-surface);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
+  letter-spacing: .5px;
 }
+
 .btn:hover {
-  background: #4169E1;
-  color: #f8fafc;
+  background: var(--color-primary-alt);
+    border-color: var(--color-border-strong);
+    color: var(--color-text-primary);
+    box-shadow: none;
+    transform: none;
 }
 
 .btn--primary {
-  background: #4169E1;
-  color: #f8fafc;
-  border: 2px solid #4169E1;
+  background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
 }
+
 .btn--primary:hover {
-  background: transparent;
-  color: #4169E1;
+  background: #1d4ed8;
+    color: #fff;
 }
-  
-/* Cards Ultra Clean */
+
+/* Cards clean */
 .card {
-  background: rgba(51, 65, 85, 0.3);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(65, 105, 225, 0.3);
-    backdrop-filter: blur(8px);
-    margin: 0 auto;
+  background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+    backdrop-filter: none;
+    border-radius: 10px;
+  }
+  
+  .card:hover {
+    border-color: var(--color-border-strong);
+    transform: none;
+    box-shadow: none;
   }
   
   .card--primary {
-    background: rgba(65, 105, 225, 0.05);
-    border: 1px solid rgba(100, 149, 237, 0.4);
+  background: var(--color-surface-alt);
+    border: 1px solid var(--color-border-strong);
   }
-  
-  /* Separadores de Seção Ultra Sutis */
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(65, 105, 225, 0.3) 50%, transparent 100%);
+/* Divisores minimalistas */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
     margin: 3rem 0;
   }
-  
-  .section-divider--dotted {
-    height: 1px;
-    background: repeating-linear-gradient(90deg,
-        rgba(65, 105, 225, 0.4) 0,
-        rgba(65, 105, 225, 0.4) 8px,
-        transparent 8px,
-        transparent 16px);
+.section-divider::before {
+  display: none;
+}
+.section-divider--dotted {
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--color-border) 0 12px, transparent 12px 24px);
     margin: 3rem 0;
   }
-  
-  /* Centralização Perfeita */
-  .content-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    width: 100%;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  /* Classe para centralização de páginas */
-  .home-page {
-    width: 100%;
-    max-width: 100vw;
-    margin: 0 auto;
-    overflow-x: hidden;
-  }
-  
-  /* Garantir centralização em telas pequenas */
-  @media (max-width: 767px) {
-    .container {
-      padding: 0 1.5rem;
-    }
-  }
-  
-  /* Responsive Typography - Centralizado */
-  @media (min-width: 768px) {
-    .container {
-      padding: 0 3rem;
-      max-width: 1200px;
-    }
-  
-    .section {
-      padding: 8rem 0;
-    }
-  
-    h1 {
-      font-size: 4.5rem;
-    }
-  
-    h2 {
-      font-size: 3rem;
-    }
-  
-    h3 {
-      font-size: 2.2rem;
-    }
+/* Remove glow utilities & animações exageradas */
+.glow-effect,
+.glow-effect:hover,
+.pulse-animation {
+  box-shadow: none;
+  animation: none;
 }
 
-@media (min-width: 1024px) {
-  .container {
-    padding: 0 4rem;
-    max-width: 1200px;
-  }
+/* Seções fullscreen */
+.section,
+.exchange-section {
+  min-height: calc(100vh - 60px);
+  /* altura da tela menos header */
+  padding: 90px 0 3rem;
+  /* espaço para header + pequena margem inferior */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+/* ================= Exchange Section - Germany Theme ================= */
+.exchange-section {
+  --ex-bg: var(--color-surface-alt);
+  --ex-border: var(--color-border);
+  --ex-border-strong: var(--color-border-strong);
+  --ex-accent: var(--color-accent);
+  --ex-accent-soft: var(--color-accent-soft);
+  --ex-text: var(--color-text-primary);
+  --ex-text-dim: var(--color-text-secondary);
+
+  /* Cores da bandeira alemã */
+  --germany-black: #000000;
+  --germany-red: #dd0000;
+  --germany-yellow: #ffce00;
 }
 
-@media (min-width: 1440px) {
-  .container {
-    padding: 0 6rem;
-    max-width: 1400px;
+.exchange-section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+  
+        .exchange-heading {
+          text-align: center;
+          font-size: clamp(2.8rem, 6vw, 3.6rem);
+          font-weight: 700;
+          letter-spacing: 1px;
+          margin-bottom: 3rem;
+          position: relative;
+        }
+    
+        .exchange-heading::after {
+          content: '';
+          position: absolute;
+          bottom: -12px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 120px;
+          height: 4px;
+          background: linear-gradient(90deg, var(--germany-black) 0% 33%, var(--germany-red) 33% 66%, var(--germany-yellow) 66% 100%);
+          border-radius: 2px;
+        }
+    
+        .exchange-subtitle {
+          text-align: center;
+          font-size: clamp(1.8rem, 4vw, 2.2rem);
+          font-weight: 600;
+          letter-spacing: .5px;
+          margin: 4rem 0 2rem;
+          color: var(--color-accent);
+          position: relative;
+        }
+    
+        .exchange-subtitle::after {
+          content: '';
+          display: block;
+          width: 60px;
+          height: 3px;
+          background: var(--color-accent);
+          margin: .8rem auto 0;
+          border-radius: 2px;
+        }
+    
+        .exchange-subtitle--red::after {
+          background: var(--germany-red);
+        }
+    
+        .exchange-subtitle--yellow::after {
+          background: var(--germany-yellow);
+        }
+    
+        .exchange-panel {
+          position: relative;
+          background: var(--ex-bg);
+          border: 1px solid var(--ex-border);
+          margin: 1.5rem auto;
+          border-radius: 12px;
+          padding: 1.8rem 1.6rem 2rem;
+          max-width: 900px;
+          width: 100%;
+  transition: all 0.3s ease;
+  }
+  
+  .exchange-panel--alt {
+    background: var(--color-surface);
+  }
+  
+  /* Painéis full-bleed */
+  .exchange-panel--full {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
+    border-radius: 0;
+    padding: 0;
+    max-width: none;
+  }
+  
+  .exchange-panel--full .exchange-panel__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.8rem 1.6rem 2rem;
+    }
+    
+    .exchange-panel h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin: 0 0 1rem;
+      color: var(--ex-text);
+      font-weight: 600;
+    }
+    
+    .exchange-panel p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ex-text-dim);
+    }
+    
+    .panel-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      background: linear-gradient(90deg, var(--ex-border) 0%, var(--ex-accent) 50%, var(--ex-border) 100%);
+      opacity: .65;
+    }
+    
+    .exchange-panel--red .panel-accent {
+      background: linear-gradient(90deg, var(--germany-black) 0%, var(--germany-red) 30%, var(--germany-black) 70%, var(--germany-red) 100%);
+      opacity: .7;
+    }
+    
+    .exchange-panel--yellow .panel-accent {
+      background: linear-gradient(90deg, var(--germany-black) 0%, var(--germany-yellow) 30%, var(--germany-black) 70%, var(--germany-yellow) 100%);
+      opacity: .7;
+    }
+    
+    .exchange-panel--red:hover .panel-accent,
+    .exchange-panel--yellow:hover .panel-accent {
+      opacity: .9;
+    }
+    
+    .exchange-panel--red {
+      border-color: rgba(221, 0, 0, 0.6);
+      background: linear-gradient(145deg, rgba(221, 0, 0, 0.08), rgba(0, 0, 0, 0.3));
+    }
+    
+    .exchange-panel--yellow {
+      border-color: rgba(255, 206, 0, 0.6);
+      background: linear-gradient(145deg, rgba(255, 206, 0, 0.08), rgba(0, 0, 0, 0.3));
+    }
+    
+    .exchange-panel--red:hover {
+      border-color: rgba(221, 0, 0, 0.8);
+    }
+                .exchange-panel--yellow:hover {
+                  border-color: rgba(255, 206, 0, 0.8);
+                }
+        .exchange-panel:hover {
+          border-color: var(--ex-border-strong);
+        
+                .exchange-cta {
+                  background: var(--color-surface-alt);
+                  border: 1px solid var(--ex-border);
+                  padding: 3rem 2rem;
+                  border-radius: 14px;
+                  text-align: center;
+                  max-width: 800px;
+                  margin: 4rem auto 0;
+                }
+                .exchange-cta h4 {
+                  margin: 0 0 1.5rem;
+                  font-size: 1.3rem;
+                  letter-spacing: .5px;
+                  text-transform: none;
+                  color: var(--color-accent);
+                  font-weight: 600;
+                }
+                .exchange-cta p {
+                  margin: 0 0 1.8rem;
+                  font-size: 1rem;
+                  line-height: 1.6;
+                  color: var(--color-text-secondary);
+                }
+        
+                .keyword,
+                .keyword-alt {
+                  color: var(--color-accent);
+                  font-weight: 600;
+                }
+@media (max-width: 640px) {
+  .exchange-panel--full .exchange-panel__inner {
+    padding: 1.4rem 1.1rem 1.5rem;
+  }
+  
+    .exchange-panel {
+      padding: 1.4rem 1.2rem 1.6rem;
+      margin: 1rem auto;
+    }
+    .exchange-panel h3 {
+      font-size: 1rem;
+  
+    .exchange-panel p {
+      font-size: 0.9rem;
+  }
+    .exchange-cta {
+      padding: 2rem 1.5rem;
+      margin: 3rem auto 0;
+  
+    .exchange-heading::after {
+      width: 80px;
+      height: 3px;
   }
 }

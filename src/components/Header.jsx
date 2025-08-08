@@ -24,10 +24,11 @@ const Header = () => {
   }, [location]);
 
   const isHomePage = location.pathname === '/';
+  const isExchangePage = location.pathname === '/intercambio';
 
   // Scroll suave para seções na página principal
   const scrollToSection = (sectionId) => {
-    if (isHomePage) {
+    if (isHomePage || isExchangePage) {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -74,6 +75,54 @@ const Header = () => {
                   >
                     <Briefcase size={18} />
                     <span>Projetos</span>
+                  </button>
+                </li>
+              </>
+            ) : isExchangePage ? (
+              <>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('exchange-hero')}
+                    className="header__nav-link header__nav-link--button"
+                  >
+                    <Home size={18} />
+                    <span>Início</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('programa')}
+                    className="header__nav-link header__nav-link--button"
+                  >
+                    <User size={18} />
+                    <span>O Programa</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('universidade')}
+                    className="header__nav-link header__nav-link--button"
+                  >
+                    <Briefcase size={18} />
+                    <span>Instituição</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('planejamento')}
+                    className="header__nav-link header__nav-link--button"
+                  >
+                    <Plane size={18} />
+                    <span>Financeiro</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('como-ajudar')}
+                    className="header__nav-link header__nav-link--button"
+                  >
+                    <User size={18} />
+                    <span>Como Ajudar</span>
                   </button>
                 </li>
               </>
@@ -137,6 +186,54 @@ const Header = () => {
                   >
                     <Briefcase size={20} />
                     <span>Projetos</span>
+                  </button>
+                </li>
+              </>
+            ) : isExchangePage ? (
+              <>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('exchange-hero')}
+                    className="header__mobile-nav-link"
+                  >
+                    <Home size={20} />
+                    <span>Início</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('programa')}
+                    className="header__mobile-nav-link"
+                  >
+                    <User size={20} />
+                    <span>O Programa</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('universidade')}
+                    className="header__mobile-nav-link"
+                  >
+                    <Briefcase size={20} />
+                    <span>Instituição</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('planejamento')}
+                    className="header__mobile-nav-link"
+                  >
+                    <Plane size={20} />
+                    <span>Financeiro</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('como-ajudar')}
+                    className="header__mobile-nav-link"
+                  >
+                    <User size={20} />
+                    <span>Como Ajudar</span>
                   </button>
                 </li>
               </>
