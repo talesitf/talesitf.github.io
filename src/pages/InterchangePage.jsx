@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Header from '../components/Header';
-import ExchangePage from '../sections/ExchangePage';
+import ExchangeSections from '../sections/ExchangePage';
 import Footer from '../sections/Footer';
 
 const InterchangePage = () => {
@@ -14,7 +14,7 @@ const InterchangePage = () => {
       <Header />
       
       <main style={{ paddingTop: '70px' }}>
-        <ExchangePage />
+        <ExchangeSections />
       </main>
       
       <Footer />

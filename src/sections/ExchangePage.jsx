@@ -24,14 +24,6 @@ const ExchangeHero = () => {
       <div className="container" style={{ textAlign: 'center' }}>
         <motion.h1 
           className="exchange-heading"
-          style={{ 
-            fontSize: 'clamp(3rem, 8vw, 5rem)',
-            marginBottom: '1.5rem',
-            color: '#f8fafc',
-            fontFamily: 'JetBrains Mono, Courier New, monospace',
-            textAlign: 'center',
-            position: 'relative'
-          }}
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -54,10 +46,7 @@ const ExchangeHero = () => {
           Uma jornada acadêmica e cultural rumo à excelência tecnológica europeia
         </motion.p>
 
-        <motion.div
-          style={{ textAlign: 'center' }}
-          {...motionProps.scaleIn(0.6)}
-        >
+        <motion.div style={{ textAlign: 'center' }} {...motionProps.scaleIn(0.6)}>
           <Button href="#programa" variant="primary" style={{
             fontSize: '1.1rem',
             padding: '1rem 2.5rem',
@@ -80,21 +69,13 @@ const ProgramSection = () => {
       width: '100%'
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle exchange-subtitle--red" style={{
-          textAlign: 'center',
-          marginBottom: '4rem',
-          fontSize: 'clamp(2.5rem, 6vw, 3.5rem)'
-        }}>
+        <h2 className="exchange-subtitle exchange-subtitle--red">
           O Programa
         </h2>
 
         <motion.div
           className="exchange-panel exchange-panel--red"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto 2rem',
-            textAlign: 'left'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'left' }}
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -104,11 +85,7 @@ const ProgramSection = () => {
 
         <motion.div
           className="exchange-panel exchange-panel--red exchange-panel--alt"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            textAlign: 'left'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left' }}
           {...motionProps.fadeInUp(0.1)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -129,21 +106,13 @@ const UniversitySection = () => {
       width: '100%'
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle exchange-subtitle--yellow" style={{
-          textAlign: 'center',
-          marginBottom: '4rem',
-          fontSize: 'clamp(2.5rem, 6vw, 3.5rem)'
-        }}>
+        <h2 className="exchange-subtitle exchange-subtitle--yellow">
           A Instituição de Destino
         </h2>
 
         <motion.div
           className="exchange-panel exchange-panel--yellow"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto 2rem',
-            textAlign: 'left'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'left' }}
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -153,11 +122,7 @@ const UniversitySection = () => {
 
         <motion.div
           className="exchange-panel exchange-panel--yellow exchange-panel--alt"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            textAlign: 'left'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left' }}
           {...motionProps.fadeInUp(0.1)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -178,21 +143,13 @@ const PlanningSection = () => {
       width: '100%'
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle exchange-subtitle--red" style={{
-          textAlign: 'center',
-          marginBottom: '4rem',
-          fontSize: 'clamp(2.5rem, 6vw, 3.5rem)'
-        }}>
+        <h2 className="exchange-subtitle exchange-subtitle--red">
           Planejamento Financeiro
         </h2>
 
         <motion.div
           className="exchange-panel exchange-panel--red"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto 2rem',
-            textAlign: 'left'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'left' }}
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -202,11 +159,7 @@ const PlanningSection = () => {
 
         <motion.div
           className="exchange-panel exchange-panel--red exchange-panel--alt"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            textAlign: 'left'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left' }}
           {...motionProps.fadeInUp(0.1)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -227,21 +180,13 @@ const ExchangeContact = () => {
       width: '100%'
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle" style={{
-          textAlign: 'center',
-          marginBottom: '4rem',
-          fontSize: 'clamp(2.5rem, 6vw, 3.5rem)'
-        }}>
+        <h2 className="exchange-subtitle">
           Como Ajudar
         </h2>
 
         <motion.div
           className="exchange-panel"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto 2rem',
-            textAlign: 'left'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'left' }}
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -251,11 +196,7 @@ const ExchangeContact = () => {
 
         <motion.div
           className="exchange-panel exchange-panel--alt"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto 2rem',
-            textAlign: 'left'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'left' }}
           {...motionProps.fadeInUp(0.1)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -265,11 +206,7 @@ const ExchangeContact = () => {
 
         <motion.div
           className="exchange-panel"
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            textAlign: 'center'
-          }}
+          style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}
           {...motionProps.fadeInUp(0.2)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -294,7 +231,7 @@ const ExchangeContact = () => {
             }}>
               Enviar Email
             </Button>
-            <Button href="#contact" style={{
+            <Button href="/#contact" style={{
               fontSize: '1.1rem',
               padding: '1rem 2.5rem',
               textDecoration: 'none'
@@ -308,30 +245,14 @@ const ExchangeContact = () => {
   );
 };
 
-const ExchangePage = () => {
+const ExchangeSections = () => {
   return (
-    <div className="exchange-page">
-      <main>
-        <section id="exchange-hero">
-          <ExchangeHero />
-        </section>
-
-        <section id="programa">
-          <ProgramSection />
-        </section>
-
-        <section id="universidade">
-          <UniversitySection />
-        </section>
-
-        <section id="planejamento">
-          <PlanningSection />
-        </section>
-
-        <section id="como-ajudar">
-          <ExchangeContact />
-        </section>
-      </main>
-    </div>
+    <>
+      <ExchangeHero />
+      <ProgramSection />
+      <UniversitySection />
+      <PlanningSection />
+      <ExchangeContact />
+    </>
   );
-}; export default ExchangePage;
+}; export default ExchangeSections;
