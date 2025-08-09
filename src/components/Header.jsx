@@ -28,17 +28,25 @@ const Header = () => {
 
   // Scroll suave para seções na página principal
   const scrollToSection = (sectionId) => {
-    if (isHomePage || isExchangePage) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(sectionId);
+    if (!element) return setIsMenuOpen(false);
+
+    if (isExchangePage) {
+      const container = document.getElementById('interchange-scroll');
+      if (container) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return setIsMenuOpen(false);
       }
+    }
+
+    if (isHomePage) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
   };
 
   return (
-    <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
+    <header className={`header ${isScrolled ? 'header--scrolled' : ''} ${isExchangePage ? 'header--compact' : ''}`}>
       <div className="header__container">
         {/* Logo */}
         <Link to="/" className="header__logo">
@@ -81,30 +89,18 @@ const Header = () => {
             ) : isExchangePage ? (
               <>
                 <li>
-                  <button
-                    onClick={() => scrollToSection('exchange-hero')}
-                    className="header__nav-link header__nav-link--button"
-                  >
+                    <Link to="/" className="header__nav-link">
                     <Home size={18} />
-                    <span>Início</span>
-                  </button>
+                      <span>Portfólio</span>
+                    </Link>
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollToSection('programa')}
+                      onClick={() => scrollToSection('como-ajudar')}
                     className="header__nav-link header__nav-link--button"
                   >
                     <User size={18} />
-                    <span>O Programa</span>
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => scrollToSection('universidade')}
-                    className="header__nav-link header__nav-link--button"
-                  >
-                    <Briefcase size={18} />
-                    <span>Instituição</span>
+                      <span>Como Ajudar</span>
                   </button>
                 </li>
                 <li>
@@ -112,19 +108,10 @@ const Header = () => {
                     onClick={() => scrollToSection('planejamento')}
                     className="header__nav-link header__nav-link--button"
                   >
-                    <Plane size={18} />
+                      <Briefcase size={18} />
                     <span>Financeiro</span>
                   </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => scrollToSection('como-ajudar')}
-                    className="header__nav-link header__nav-link--button"
-                  >
-                    <User size={18} />
-                    <span>Como Ajudar</span>
-                  </button>
-                </li>
+                  </li>
               </>
             ) : (
               <li>
@@ -135,15 +122,17 @@ const Header = () => {
               </li>
             )}
             
-            <li>
-              <Link 
-                to="/intercambio" 
-                className={`header__nav-link ${location.pathname === '/intercambio' ? 'header__nav-link--active' : ''}`}
-              >
-                <Plane size={18} />
-                <span>Intercâmbio</span>
-              </Link>
-            </li>
+            {!isExchangePage && (
+              <li>
+                <Link
+                  to="/intercambio"
+                  className={`header__nav-link ${location.pathname === '/intercambio' ? 'header__nav-link--active' : ''}`}
+                >
+                  <Plane size={18} />
+                  <span>Intercâmbio</span>
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
 
@@ -192,50 +181,29 @@ const Header = () => {
             ) : isExchangePage ? (
               <>
                 <li>
-                  <button
-                    onClick={() => scrollToSection('exchange-hero')}
-                    className="header__mobile-nav-link"
-                  >
+                    <Link to="/" className="header__mobile-nav-link">
                     <Home size={20} />
-                    <span>Início</span>
-                  </button>
+                      <span>Portfólio</span>
+                    </Link>
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollToSection('programa')}
+                      onClick={() => scrollToSection('como-ajudar')}
                     className="header__mobile-nav-link"
                   >
                     <User size={20} />
-                    <span>O Programa</span>
+                      <span>Como Ajudar</span>
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection('universidade')}
-                    className="header__mobile-nav-link"
-                  >
-                    <Briefcase size={20} />
-                    <span>Instituição</span>
-                  </button>
-                </li>
-                <li>
-                  <button
+                    <button
                     onClick={() => scrollToSection('planejamento')}
                     className="header__mobile-nav-link"
                   >
-                    <Plane size={20} />
+                      <Briefcase size={20} />
                     <span>Financeiro</span>
                   </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => scrollToSection('como-ajudar')}
-                    className="header__mobile-nav-link"
-                  >
-                    <User size={20} />
-                    <span>Como Ajudar</span>
-                  </button>
-                </li>
+                  </li>
               </>
             ) : (
               <li>
@@ -246,15 +214,17 @@ const Header = () => {
               </li>
             )}
             
-            <li>
-              <Link 
-                to="/intercambio" 
-                className={`header__mobile-nav-link ${location.pathname === '/intercambio' ? 'header__mobile-nav-link--active' : ''}`}
-              >
-                <Plane size={20} />
-                <span>Intercâmbio</span>
-              </Link>
-            </li>
+            {!isExchangePage && (
+              <li>
+                <Link
+                  to="/intercambio"
+                  className={`header__mobile-nav-link ${location.pathname === '/intercambio' ? 'header__mobile-nav-link--active' : ''}`}
+                >
+                  <Plane size={20} />
+                  <span>Intercâmbio</span>
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
 

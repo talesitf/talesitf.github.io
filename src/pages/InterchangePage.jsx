@@ -13,7 +13,17 @@ const InterchangePage = () => {
     >
       <Header />
       
-      <main style={{ paddingTop: '70px' }}>
+      <main
+        id="interchange-scroll"
+        style={{
+          // Contêiner de scroll e snap
+          marginTop: '60px',
+          height: 'calc(100vh - 60px)',
+          overflowY: 'auto',
+          scrollSnapType: 'y mandatory',
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
         <ExchangeSections />
       </main>
       

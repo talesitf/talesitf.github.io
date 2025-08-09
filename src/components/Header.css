@@ -21,6 +21,22 @@
     box-shadow: 0 4px 18px -6px rgba(0, 0, 0, 0.4);
 }
 
+/* Compact mode para página de intercâmbio */
+.header--compact .header__nav-list {
+  gap: 0.5rem;
+}
+
+.header--compact .header__nav-link,
+.header--compact .header__nav-link--button {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.header--compact .header__nav-link svg,
+.header--compact .header__nav-link--button svg {
+  width: 14px;
+  height: 14px;
+}
 .header__container {
   margin: 0 auto;
   padding: 0 2rem;
