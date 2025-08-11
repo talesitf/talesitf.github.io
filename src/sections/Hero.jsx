@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+// Referência explícita para satisfazer o linter quando usado apenas em JSX
+const _MOTION_USED = motion;
 
 const Hero = () => {
   const focusItems = [

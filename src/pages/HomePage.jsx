@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import Hero from '../sections/Hero';
 import About from '../sections/About';
