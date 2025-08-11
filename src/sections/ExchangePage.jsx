@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Github, Linkedin, Instagram } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { motionProps } from '../utils/motion';
 import { useEffect, useState } from 'react';
@@ -7,6 +8,10 @@ import profileImg from '../assets/profile/20220705_153751.jpg';
 import criacao1 from '../assets/criacao/IMG-20190724-WA0034.jpg';
 import criacao2 from '../assets/criacao/IMG-20210717-WA0021.jpg';
 import criacao3 from '../assets/criacao/IMG-20200101-WA0000.jpg';
+import { campaign as campaignData } from '../data/campaign.js';
+// QRCode do PIX e lista de contribuintes (fallback)
+import pixQR from '../assets/QRCode/Captura de tela de 2025-08-11 11-42-12.png';
+import contributorsRaw from '../assets/contirbuintes/NU-transferencias-recebidas-nomes.txt?raw';
 // Imagens locais por seção
 import destaque1 from '../assets/destaques/12291318_976974692375685_4521701990103217632_o.jpg';
 import destaque2 from '../assets/destaques/52.jpg';
@@ -20,6 +25,9 @@ import insper3 from '../assets/InsperPB/IMG-20220607-WA0000.jpg';
 import insper4 from '../assets/InsperPB/IMG-20220617-WA0005.jpg';
 import insper5 from '../assets/InsperPB/IMG-20220711-WA0014.jpg';
 import insper6 from '../assets/InsperPB/IMG-20221211-WA0005.jpg';
+import thiImg from '../assets/Ingolstadt/THI.jpg';
+import ingolstadtChristkindl from '../assets/Ingolstadt/IngolstadtChristkindlmarktTheaterplatzErichReisinger.jpg';
+import ingolstadtRathausplatz from '../assets/Ingolstadt/IngolstadtRathausplatz.jpg';
 
 // Garante referência explícita para satisfazer o linter quando usado em JSX
 const __MOTION_USED = motion;
@@ -205,7 +213,7 @@ const ExchangeHero = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Intercâmbio Alemanha
+          Tales in Germany
         </motion.h1>
         
         {/* Conteúdo em duas colunas: texto + imagem lateral */}
@@ -266,6 +274,13 @@ const ExchangeHero = () => {
                 textDecoration: 'none'
               }}>
                 Ver Custos
+              </Button>
+              <Button href="#thi" style={{
+                fontSize: '1.05rem',
+                padding: '0.9rem 2.1rem',
+                textDecoration: 'none'
+              }}>
+                Instituição
               </Button>
             </motion.div>
           </motion.div>
@@ -387,7 +402,7 @@ const DestaqueOlimpicoSection = () => {
           </p>
           <p>
             Já no 6º ano, conquistei minhas primeiras medalhas em provas como a <Highlight>OBA</Highlight>, a <Highlight>OBI</Highlight> e a
-            <Highlight> Mathematique Sans Frontières</Highlight>. Desde então, foi uma dedicação intensa que rendeu um quadro expressivo de participações e conquistas.
+            <Highlight> Mathématiques Sans Frontières</Highlight>. Desde então, foi uma dedicação intensa que rendeu um quadro expressivo de participações e conquistas.
           </p>
           <p>
             Essa trajetória abriu portas, inclusive para representar o colégio na <Highlight>QUANTA 2015</Highlight>, em Lucknow, Índia, que foi minha primeira oportunidade internacional.
@@ -439,7 +454,7 @@ const PrimeiraIndependenciaSection = () => {
             Mas, junto com essa oportunidade, veio a necessidade de me tornar mais independente. A bolsa me garantia o colégio, mas eu precisei me mudar para Fortaleza sozinho, enfrentando novos desafios e responsabilidades. Foi uma época difícil, mudando de apartamento a cada ano, mas aprendi muito sobre resiliência e adaptação.
           </p>
           <p style={{ marginBottom: 0 }}>
-            Ao total, foram 3 anos e meio de muito aprendizado, tanto acadêmico quanto pessoal. Após concluir o Ensino Médio, passei ainda 2 anos tentando a aprovação no ITA, obtendo sucesso moderado, com aprovações em vestibulares "menores" como EFFOM e Escola Naval, e chegando perto da aprovação no ITA em 2020, quando fui cortado pela minha nota de Química.
+            Ao todo, foram 3 anos e meio de muito aprendizado, tanto acadêmico quanto pessoal. Após concluir o Ensino Médio, passei ainda 2 anos tentando a aprovação no ITA, obtendo sucesso moderado, com aprovações em vestibulares "menores" como EFOOM e Escola Naval, e chegando perto da aprovação no ITA em 2020, quando fui cortado pela minha nota de Química.
           </p>
         </motion.div>
         <AccordionGallery
@@ -478,7 +493,7 @@ const BolsaInsperSection = () => {
         >
           <span className="panel-accent" aria-hidden="true" />
           <p>
-            No meio da pandemia do Covid, em 2021, eu conheci o Insper. Era uma instituição que rivalizava o ITA em termos de qualidade ed ensino e superior em infraestrutura. Apliquei para o Programa de Bolsas e Vestibular ainda no primeiro semestre, e fui aprovado de primeira para o curso de Engenharia de Computação!
+            No meio da pandemia da Covid, em 2021, eu conheci o Insper. Era uma instituição que rivalizava o ITA em termos de qualidade de ensino e superior em infraestrutura. Apliquei para o Programa de Bolsas e Vestibular ainda no primeiro semestre e fui aprovado de primeira para o curso de Engenharia de Computação!
           </p>
           <p>
             Graças a essa bolsa, pude me mudar para a Toca da Raposa, a moradia para bolsistas do Insper e de fora de São Paulo, onde conheci muitas pessoas, com histórias e culturas diferentes, e que se tornaram grandes amigos. E parte dessas pessoas se tornaram meus atuais colegas de apartamento, com quem divido minhas angústias e conquistas, se tornando uma segunda família.
@@ -500,6 +515,8 @@ const BolsaInsperSection = () => {
 // Seção de Planejamento Financeiro
 const PlanningSection = () => {
   const isMobile = useIsMobile();
+  const rate = Number(campaignData?.exchangeRate?.eurToBrl || 0);
+  const asOf = campaignData?.exchangeRate?.asOf || '';
   return (
     <section id="planejamento" className="section" style={{
       // padding-top removido
@@ -515,13 +532,13 @@ const PlanningSection = () => {
       scrollMarginTop: `0px`
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle exchange-subtitle--red">
+        <h2 className="exchange-subtitle exchange-subtitle--red" style={{ margin: '0.25rem 0 0.6rem' }}>
           Planejamento Financeiro
         </h2>
 
         <motion.div
           className="exchange-panel exchange-panel--red"
-          style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'left' }}
+          style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'left', paddingTop: '0.6rem' }}
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -529,100 +546,122 @@ const PlanningSection = () => {
             <thead>
               <tr>
                 <th>Item</th>
-                <th>Mínimo (R$)</th>
-                <th>Esperado (R$)</th>
                 <th>Mínimo (€)</th>
                 <th>Esperado (€)</th>
+                <th>Mínimo (R$)</th>
+                <th>Esperado (R$)</th>
               </tr>
             </thead>
             <tbody>
               {/* Mensalidades variáveis */}
               <tr>
                 <td>Acomodação</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>385,00</td>
+                <td>385,00</td>
+                <td>2.434,97</td>
+                <td>2.434,97</td>
               </tr>
               <tr>
                 <td>Alimentação</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>205,40</td>
+                <td>289,36</td>
+                <td>1.298,99</td>
+                <td>1.829,44</td>
               </tr>
               <tr>
                 <td>Transporte</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Utilidades</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>38,00</td>
+                <td>60,00</td>
+                <td>240,33</td>
+                <td>379,48</td>
               </tr>
               <tr>
                 <td>Despesas domésticas</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>50,00</td>
+                <td>50,00</td>
+                <td>316,23</td>
+                <td>316,23</td>
               </tr>
               <tr>
                 <td>Plano de celular</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>30,00</td>
+                <td>40,00</td>
+                <td>189,74</td>
+                <td>252,99</td>
               </tr>
               <tr>
-                <td>Health insurance</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Seguro saúde</td>
+                <td>144,00</td>
+                <td>144,00</td>
+                <td>910,13</td>
+                <td>910,13</td>
               </tr>
               <tr className="row-subtotal">
                 <td>Subtotal mensal</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>852,40</td>
+                <td>968,36</td>
+                <td>5.391,08</td>
+                <td>6.124,49</td>
               </tr>
               <tr className="row-semester">
                 <td>Semestre (×6)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>5.114,40</td>
+                <td>5.810,16</td>
+                <td>32.346,48</td>
+                <td>36.746,94</td>
               </tr>
+              {/* Custos únicos */}
               <tr className="row-fixed-start">
+                <td>Taxas de entrada do apartamento</td>
+                <td>285,00</td>
+                <td>285,00</td>
+                <td>1.802,51</td>
+                <td>1.802,51</td>
+              </tr>
+              <tr>
+                <td>Depósito</td>
+                <td>770,00</td>
+                <td>770,00</td>
+                <td>4.869,94</td>
+                <td>4.869,94</td>
+              </tr>
+              <tr>
+                <td>Permissão de residência</td>
+                <td>100,00</td>
+                <td>120,00</td>
+                <td>632,46</td>
+                <td>758,95</td>
+              </tr>
+              <tr>
                 <td>Passagens aéreas</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>5.000,00</td>
+                <td>6.500,00</td>
               </tr>
               <tr>
                 <td>Reserva de emergência</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>5.000,00</td>
+                <td>5.000,00</td>
               </tr>
               <tr className="row-total">
                 <td>Total estimado</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>49.651,39</td>
+                <td>55.678,34</td>
               </tr>
             </tbody>
           </table>
+          {/* Linha de cotação abaixo da tabela */}
+          <div className="rate-row" style={{ marginTop: 10, paddingTop: 8, borderTop: '1px dashed var(--color-border)' }}>
+            <small style={{ color: 'var(--color-text-secondary)' }}>
+              Cotação usada: 1 € = R$ {rate.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}
+              {' '}<span style={{ color: 'var(--color-text-muted)' }}>(em {asOf || '--/--/---- --:--'})</span>
+            </small>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -632,6 +671,18 @@ const PlanningSection = () => {
 // Seção Como Ajudar
 const ExchangeContact = () => {
   const isMobile = useIsMobile();
+  const goal = Number(campaignData.goalBRL || 0);
+  const raised = Number(campaignData.raisedBRL || 0);
+  const pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
+  const pixKey = '01tato02@gmail.com';
+  const lastUpdatedRaw = campaignData?.lastUpdated || campaignData?.exchangeRate?.asOf || '';
+  const formatLastUpdated = (raw) => {
+    if (!raw) return '';
+    const d = new Date(raw);
+    if (isNaN(d.getTime())) return String(raw);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  };
+  const lastUpdated = formatLastUpdated(lastUpdatedRaw);
   return (
     <section id="como-ajudar" className="section" style={{
       // padding-top removido
@@ -650,6 +701,7 @@ const ExchangeContact = () => {
         <h2 className="exchange-subtitle">
           Como Ajudar
         </h2>
+        {/* Painel de contribuintes movido para seção final */}
 
         <motion.div
           className="exchange-panel"
@@ -657,7 +709,23 @@ const ExchangeContact = () => {
           {...motionProps.fadeInUp(0.2)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <h3>Como Ajudar</h3>
+
+          {/* Progresso da campanha (agora dentro do mesmo painel para igualar a largura) */}
+          <div style={{ marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', color: 'var(--color-text-secondary)', fontSize: 14, gap: 12 }}>
+              <span>Arrecadado: R$ {raised.toLocaleString('pt-BR')}</span>
+              <span>Meta: R$ {goal.toLocaleString('pt-BR')} ({pct}%)</span>
+            </div>
+            <div style={{ height: 10, background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 999, overflow: 'hidden', marginTop: 6 }}>
+              <div style={{ width: `${pct}%`, height: '100%', background: 'linear-gradient(90deg, var(--color-accent), #1d4ed8)', transition: 'width .4s ease' }} />
+            </div>
+            {lastUpdated ? (
+              <div style={{ marginTop: 6, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 8, color: 'var(--color-text-muted)', fontSize: 12 }}>
+                <span style={{ width: 8, height: 8, borderRadius: 999, background: 'var(--color-accent)', display: 'inline-block' }} />
+                <span>Atualizado: {lastUpdated}</span>
+              </div>
+            ) : null}
+          </div>
 
           {/* Grid de doações: dois grandes (PIX e Wise) lado a lado, dois menores (TED e Compartilhar) abaixo */}
           <div className="donations-grid">
@@ -666,15 +734,16 @@ const ExchangeContact = () => {
               <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.15rem', letterSpacing: '.3px' }}>PIX</h4>
               <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Escaneie o QR Code ou copie a chave para doar via PIX.</p>
               <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-                {/* Placeholder do QRCode */}
-                <div style={{ width: 200, height: 200, borderRadius: 8, background: 'repeating-linear-gradient(45deg, var(--color-border) 0 6px, transparent 6px 12px)', border: '1px solid var(--color-border-strong)' }} aria-label="QR Code PIX" />
+                {/* QRCode real */}
+                <div style={{ width: 200, height: 200, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--color-border-strong)', background: 'var(--color-surface-alt)' }} aria-label="QR Code PIX">
+                  <img src={pixQR} alt="QR Code do PIX" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                </div>
                 <div style={{ minWidth: 240 }}>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--color-text-secondary)', wordBreak: 'break-all', background: 'rgba(2,6,23,0.35)', border: '1px solid var(--color-border)', borderRadius: 8, padding: '0.6rem 0.75rem' }}>
-                    chave-pix-aqui@exemplo.com
+                    {pixKey}
                   </div>
                   <div className="donations-actions" style={{ marginTop: 10 }}>
-                    <Button as="button" onClick={() => navigator.clipboard?.writeText('chave-pix-aqui@exemplo.com')} variant="primary">Copiar chave</Button>
-                    <Button href="#">Abrir no app</Button>
+                    <Button as="button" onClick={() => navigator.clipboard?.writeText(pixKey)} variant="primary">Copiar chave</Button>
                   </div>
                 </div>
               </div>
@@ -687,7 +756,7 @@ const ExchangeContact = () => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <div>
                   <small style={{ color: 'var(--color-text-muted)' }}>Nome</small>
-                  <div style={{ fontFamily: 'var(--font-mono)' }}>Seu Nome</div>
+                  <div style={{ fontFamily: 'var(--font-mono)' }}>Tales Taveira de Freitas</div>
                 </div>
                 <div>
                   <small style={{ color: 'var(--color-text-muted)' }}>Banco</small>
@@ -695,11 +764,11 @@ const ExchangeContact = () => {
                 </div>
                 <div>
                   <small style={{ color: 'var(--color-text-muted)' }}>IBAN</small>
-                  <div style={{ fontFamily: 'var(--font-mono)', wordBreak: 'break-all' }}>DE00 0000 0000 0000 0000 00</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', wordBreak: 'break-all' }}>BE66 9055 1926 4043</div>
                 </div>
                 <div>
                   <small style={{ color: 'var(--color-text-muted)' }}>BIC/SWIFT</small>
-                  <div style={{ fontFamily: 'var(--font-mono)' }}>TRWIBEB1XXX</div>
+                  <div style={{ fontFamily: 'var(--font-mono)' }}>TRWIBEB1XX</div>
                 </div>
               </div>
             </div>
@@ -709,25 +778,48 @@ const ExchangeContact = () => {
               <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>TED</h4>
               <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Dados para transferência nacional.</p>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--color-text-secondary)' }}>
-                <li>Banco: 000 - Nome do Banco</li>
-                <li>Agência: 0000</li>
-                <li>Conta: 000000-0</li>
-                <li>Favorecido: Seu Nome</li>
-                <li>CPF: 000.000.000-00</li>
+                <li>Banco: 0260 - Nubank</li>
+                <li>Agência: 0001</li>
+                <li>Conta: 21072746-0</li>
+                <li>Favorecido: Tales Taveira de Freitas</li>
+                <li>CPF: 077.324.483-24</li>
               </ul>
             </div>
 
-            {/* Card Compartilhar */}
+            {/* Card Contatos + Compartilhe */}
             <div className="span-7" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.1rem' }}>
-              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>Compartilhe</h4>
-              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Se não puder contribuir agora, compartilhar já ajuda muito!</p>
-              <div className="donations-actions">
-                <Button as="button" onClick={() => navigator.share ? navigator.share({ title: 'Ajude no intercâmbio', url: window.location.href }) : window.open(`https://wa.me/?text=${encodeURIComponent(window.location.href)}`, '_blank')} variant="primary">WhatsApp</Button>
-                <Button href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer">Facebook</Button>
-                <Button href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Ajude%20no%20interc%C3%A2mbio`} target="_blank" rel="noopener noreferrer">Twitter</Button>
-                <Button as="button" onClick={() => navigator.clipboard?.writeText(window.location.href)}>Copiar link</Button>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>Contatos e Compartilhar</h4>
+              <div style={{ display: 'grid', gap: 10, gridTemplateColumns: '1fr' }}>
+                <div>
+                  <p style={{ margin: '0.4rem 0 0.6rem', color: 'var(--color-text-secondary)' }}>Me encontre nas redes:</p>
+                  <div className="donations-actions" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                    <Button href="https://www.linkedin.com/in/tales-ivalque" target="_blank" rel="noopener noreferrer" className="btn--icon">
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <Linkedin size={18} /> LinkedIn
+                      </span>
+                    </Button>
+                    <Button href="https://github.com/talesitf" target="_blank" rel="noopener noreferrer" className="btn--icon">
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <Github size={18} /> GitHub
+                      </span>
+                    </Button>
+                    <Button href="https://instagram.com/talesitf" target="_blank" rel="noopener noreferrer" className="btn--icon">
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <Instagram size={18} /> Instagram
+                      </span>
+                    </Button>
+                  </div>
+                </div>
+                <div>
+                  <p style={{ margin: '0.6rem 0 0.6rem', color: 'var(--color-text-secondary)' }}>Se não puder contribuir agora, compartilhar já ajuda!</p>
+                  <div className="donations-actions">
+                    <Button as="button" onClick={() => navigator.clipboard?.writeText(window.location.href)} variant="primary">Copiar link</Button>
+                  </div>
+                </div>
               </div>
             </div>
+
+
           </div>
         </motion.div>
       </div>
@@ -755,7 +847,7 @@ const UniversitySection = () => {
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="exchange-subtitle exchange-subtitle--yellow">
-          THI
+          Technische Hochschule Ingolstadt (THI)
         </h2>
 
         <motion.div
@@ -764,32 +856,77 @@ const UniversitySection = () => {
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <h3>Technische Hochschule Ingolstadt</h3>
           <p>
-            Universidade de excelência aplicada, com forte ligação à indústria e um ambiente internacional vibrante. Infraestrutura moderna,
-            laboratórios atualizados e oportunidades de projetos em engenharia tornam a THI um passo estratégico na minha formação.
+            A THI é uma universidade de ciências aplicadas na Baviera, muito forte em engenharia e tecnologia. Para mim, é a chance de viver um semestre imerso em uma cultura diferente, encarar o desafio de sair da zona de conforto e conectar o que venho construindo até aqui com novas formas de aprender e resolver problemas.
           </p>
           <p>
-            Busco aprender com a diversidade, entender desafios reais e trazer soluções com engenharia aplicada. A THI é o lugar certo para
-            expandir horizontes.
+            A oportunidade veio pela parceria de mobilidade entre o <Highlight>Insper</Highlight> e a <Highlight>THI</Highlight>, que reconhece créditos e viabiliza o intercâmbio sem mensalidade por lá. O <Highlight>Programa de Bolsas</Highlight> do Insper cobre minha formação aqui no Brasil, e eu corro atrás do restante para tornar essa etapa possível.
+          </p>
+          <p>
+            Meu plano é cursar matérias que ainda me faltam, como Economia para Engenharia, revisitar algumas que gostei muito com um novo olhar, participar de projetos e trazer esse aprendizado de volta. No meio tempo, quero aproveitar para conhecer novos lugares, construir boas relações e ampliar meu repertório. Quero voltar com bagagem técnica e histórias de quem aprendeu e contribuiu.
           </p>
           <p style={{ marginBottom: 0 }}>
-            Levo a curiosidade de Juazeiro, a base do Insper e a vontade de retribuir. Esse intercâmbio é um ponto de inflexão.
+            Essa oportunidade conecta a curiosidade lá de Juazeiro, a base que construí no Insper e a vontade de construir algo maior. Vou registrar tudo por aqui e, se puder, fica o convite para acompanhar e apoiar.
           </p>
         </motion.div>
 
         <AccordionGallery
-          images={[
-            'https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1470290378698-263fa7ca60ab?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1436450412740-6b988f486c6b?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1506084868230-bb9d95c24759?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop'
-          ]}
+          images={[thiImg, ingolstadtChristkindl, ingolstadtRathausplatz]}
           delay={0.1}
           compact
         />
+      </div>
+    </section>
+  );
+};
+
+// Seção final: Contribuintes
+const ContributorsSection = () => {
+  const isMobile = useIsMobile();
+  // Fallback: se não houver contribuidores no campaign.js, usa o arquivo .txt
+  const fallbackContributors = (contributorsRaw || '')
+    .split('\n')
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0 && !s.startsWith('#'))
+    .map((name) => ({ name }));
+  const contributors = Array.isArray(campaignData.contributors) && campaignData.contributors.length > 0
+    ? campaignData.contributors
+    : fallbackContributors;
+  return (
+    <section id="contribuintes" className="section" style={{
+      padding: isMobile ? `0 0 2rem` : '0 0 2rem',
+      background: 'transparent',
+      width: '100%',
+      minHeight: 'auto',
+      display: 'flex',
+      alignItems: 'center',
+      scrollSnapAlign: 'end',
+      scrollSnapStop: 'always',
+      overflow: 'visible',
+      scrollMarginTop: `0px`
+    }}>
+      <div className="container" style={{ textAlign: 'center' }}>
+        <h2 className="exchange-subtitle">Contribuintes</h2>
+        <div className="exchange-panel" style={{ maxWidth: 1100, margin: '0 auto 1.25rem', textAlign: 'left' }}>
+          <span className="panel-accent" aria-hidden="true" />
+          {Array.isArray(contributors) && contributors.length > 0 ? (
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 10, gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}>
+              {contributors.map((c, i) => (
+                <li key={i} style={{ border: '1px solid var(--color-border)', borderRadius: 10, padding: '0.6rem 0.75rem', background: 'var(--color-surface)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'baseline' }}>
+                    <strong style={{ color: 'var(--color-text-primary)' }}>{c.name || 'Anônimo'}</strong>
+                    {c.amountBRL != null && c.amountBRL !== '' ? (
+                      <span style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>R$ {(Number(c.amountBRL) || 0).toLocaleString('pt-BR')}</span>
+                    ) : null}
+                  </div>
+                  {c.message ? <div style={{ color: 'var(--color-text-secondary)', marginTop: 4, fontSize: 14 }}>{c.message}</div> : null}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p style={{ color: 'var(--color-text-secondary)', margin: 0 }}>Ainda não há contribuições registradas.</p>
+          )}
+        </div>
       </div>
     </section>
   );
@@ -1140,6 +1277,7 @@ const ExchangeSections = () => {
         #interchange-scroll .donations-actions .btn--primary:hover {
           background: #1d4ed8;
         }
+  #interchange-scroll .btn--icon svg { vertical-align: middle; }
         /* Col spans (desktop) */
         #interchange-scroll .donations-grid .span-12 { grid-column: span 12; }
         #interchange-scroll .donations-grid .span-8 { grid-column: span 8; }
@@ -1179,6 +1317,7 @@ const ExchangeSections = () => {
         <PlanningSection />
         <ExchangeContact />
         <UniversitySection />
+        <ContributorsSection />
         <SectionDotsNav sections={sections} />
       </div>
     </>
