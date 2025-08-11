@@ -2,6 +2,24 @@ import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import { motionProps } from '../utils/motion';
 import { useEffect, useState } from 'react';
+// Imagens locais (perfil e família)
+import profileImg from '../assets/profile/20220705_153751.jpg';
+import criacao1 from '../assets/criacao/IMG-20190724-WA0034.jpg';
+import criacao2 from '../assets/criacao/IMG-20210717-WA0021.jpg';
+import criacao3 from '../assets/criacao/IMG-20200101-WA0000.jpg';
+// Imagens locais por seção
+import destaque1 from '../assets/destaques/12291318_976974692375685_4521701990103217632_o.jpg';
+import destaque2 from '../assets/destaques/52.jpg';
+import destaque3 from '../assets/destaques/IMG-20190607-WA0032.jpg';
+import fortal1 from '../assets/fortal/IMG_20190916_191600751_HDR.jpg';
+import fortal2 from '../assets/fortal/IMG_20190919_161804113_HDR.jpg';
+import fortal3 from '../assets/fortal/IMG-20200215-WA0014.jpg';
+import insper1 from '../assets/InsperPB/20230517_105114.jpg';
+import insper2 from '../assets/InsperPB/IMG-20210822-WA0008.jpg';
+import insper3 from '../assets/InsperPB/IMG-20220607-WA0000.jpg';
+import insper4 from '../assets/InsperPB/IMG-20220617-WA0005.jpg';
+import insper5 from '../assets/InsperPB/IMG-20220711-WA0014.jpg';
+import insper6 from '../assets/InsperPB/IMG-20221211-WA0005.jpg';
 
 // Garante referência explícita para satisfazer o linter quando usado em JSX
 const __MOTION_USED = motion;
@@ -45,7 +63,8 @@ const Highlight = ({ children }) => (
 );
 
 // Galeria responsiva: sanfona (desktop) e carrossel com snap (mobile)
-const AccordionGallery = ({ images = [], delay = 0, compact = false }) => {
+// positions: objeto opcional { [src]: 'center top' } para ajustar o foco por imagem
+const AccordionGallery = ({ images = [], positions = {}, delay = 0, compact = false }) => {
   const [active, setActive] = useState(null);
   const isMobile = useIsMobile();
   const [shortVH, setShortVH] = useState(false);
@@ -95,7 +114,7 @@ const AccordionGallery = ({ images = [], delay = 0, compact = false }) => {
             <img
               src={src}
               alt="Galeria"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: positions[src] || 'center', display: 'block' }}
               loading="lazy"
             />
             <span style={{ position: 'absolute', inset: 0, background: 'linear-gradient( to top, rgba(2,6,23,0.4), rgba(2,6,23,0) )' }} />
@@ -138,7 +157,7 @@ const AccordionGallery = ({ images = [], delay = 0, compact = false }) => {
           <img
             src={src}
             alt="Galeria"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: active === idx ? 'none' : 'grayscale(8%)', opacity: 0.98 }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: positions[src] || 'center', display: 'block', filter: active === idx ? 'none' : 'grayscale(8%)', opacity: 0.98 }}
             loading="lazy"
           />
           <span style={{
@@ -262,8 +281,8 @@ const ExchangeHero = () => {
               <div aria-hidden style={{ position: 'absolute', inset: -12, background: 'radial-gradient( 50% 50% at 50% 50%, rgba(59,130,246,0.25) 0%, rgba(59,130,246,0) 65% )', filter: 'blur(12px)' }} />
               <div style={{ borderRadius: 16, overflow: 'hidden', border: '1px solid #2c567e', background: 'linear-gradient(135deg, rgba(17,24,39,0.6), rgba(2,6,23,0.6))' }}>
                 <img
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop"
-                  alt="Estudos e intercâmbio"
+                  src={profileImg}
+                  alt="Foto de perfil"
                   style={{ display: 'block', width: '100%', height: 'auto', aspectRatio: '4 / 5', objectFit: 'cover' }}
                   loading="eager"
                 />
@@ -323,13 +342,8 @@ const CriacaoSection = () => {
           </p>
         </motion.div>
         <AccordionGallery
-          images={[
-            'https://images.unsplash.com/photo-1460518451285-97b6aa326961?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1511452885600-a3d2c9148a31?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1519455953755-af066f52f1ea?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop'
-          ]}
+          images={[criacao1, criacao2, criacao3]}
+          positions={{ [criacao1]: 'center 20%' }}
           delay={0.05}
         />
       </div>
@@ -367,27 +381,25 @@ const DestaqueOlimpicoSection = () => {
         >
           <span className="panel-accent" aria-hidden="true" />
           <p>
-            No Objetivo conheci as <Highlight>Olimpíadas Científicas</Highlight>. Comecei pela OBA no 5º ano e segui em frente, acumulando medalhas
-            e, principalmente, o gosto pelo desafio.
+            Meu último colégio foi o <Highlight>Colégio Objetivo</Highlight> da minha cidade, onde fiquei do 4º ano do Fundamental até o 2º ano do Ensino Médio.
+            Lá fui apresentado ao mundo das <Highlight>Olimpíadas</Highlight>, que serviram como um desafio extra no dia a dia da escola e, mais tarde, como um ótimo caminho para
+            <Highlight> novas oportunidades</Highlight>.
           </p>
           <p>
-            Aos 13, entendi que olimpíadas abrem portas e que estudar pode ser aventura. Conheci o <Highlight>ITA</Highlight> e esse objetivo ganhou
-            espaço no meu dia a dia.
+            Já no 6º ano, conquistei minhas primeiras medalhas em provas como a <Highlight>OBA</Highlight>, a <Highlight>OBI</Highlight> e a
+            <Highlight> Mathematique Sans Frontières</Highlight>. Desde então, foi uma dedicação intensa que rendeu um quadro expressivo de participações e conquistas.
+          </p>
+          <p>
+            Essa trajetória abriu portas, inclusive para representar o colégio na <Highlight>QUANTA 2015</Highlight>, em Lucknow, Índia, que foi minha primeira oportunidade internacional.
+            Além das provas, tive um pequeno destaque ao atuar como tradutor do representante da delegação no discurso final da competição.
           </p>
           <p style={{ marginBottom: 0 }}>
-            A seleção para a <Highlight>QUANTA</Highlight>, na Índia, consolidou o amor por resolver problemas. Competi em Robótica e Lógica e ainda
-            atuei como tradutor no encerramento da delegação brasileira.
+            Mas acho que a maior oportunidade que as Olímpiadas me deram foi a bolsa de estudos integral no <Highlight>Farias Brito</Highlight> em 2018 para estudar na sua turma <Highlight>ITA/IME</Highlight>, onde concluí meu Ensino Médio e desenvolvi ainda mais meu conhecimento.
           </p>
         </motion.div>
         <AccordionGallery
-          images={[
-            'https://images.unsplash.com/photo-1555421689-43cad7100751?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop'
-          ]}
+          images={[destaque1, destaque2, destaque3]}
+          positions={{ [destaque1]: 'center 35%' }}
           delay={0.1}
         />
       </div>
@@ -421,26 +433,18 @@ const PrimeiraIndependenciaSection = () => {
         >
           <span className="panel-accent" aria-hidden="true" />
           <p>
-            No 3º ano, conquistei bolsa integral no <Highlight>Farias Brito</Highlight> e me mudei sozinho para <Highlight>Fortaleza</Highlight>.
-            A rotina era intensa, com aulas das 8h às 22h e pressão por resultado.
+            Essa bolsa foi uma oportunidade ímpar, me permitindo estudar na maior instituição de ensino preparatório para o <Highlight>ITA</Highlight> do país. Sendo aluno Olímpico, conheci o Instituto Tecnológico já no 9º ano, e o coloquei como meta principal da minha trajetória acadêmica. Seria um sonho conquistar o vestibular mais difícil do país.
           </p>
           <p>
-            Nem sempre os vestibulares vieram, mas as olimpíadas e simulados mostravam evolução real. A cada ciclo, entendia um pouco melhor o
-            que funcionava e como persistir.
+            Mas, junto com essa oportunidade, veio a necessidade de me tornar mais independente. A bolsa me garantia o colégio, mas eu precisei me mudar para Fortaleza sozinho, enfrentando novos desafios e responsabilidades. Foi uma época difícil, mudando de apartamento a cada ano, mas aprendi muito sobre resiliência e adaptação.
           </p>
           <p style={{ marginBottom: 0 }}>
-            Aprovações como a <Highlight>EFOMM</Highlight> e o corte do <Highlight>IME</Highlight> consolidaram resiliência e mostraram que o caminho
-            estava se ajustando.
+            Ao total, foram 3 anos e meio de muito aprendizado, tanto acadêmico quanto pessoal. Após concluir o Ensino Médio, passei ainda 2 anos tentando a aprovação no ITA, obtendo sucesso moderado, com aprovações em vestibulares "menores" como EFFOM e Escola Naval, e chegando perto da aprovação no ITA em 2020, quando fui cortado pela minha nota de Química.
           </p>
         </motion.div>
         <AccordionGallery
-          images={[
-            'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?q=80&w=1200&auto=format&fit=crop'
-          ]}
+          images={[fortal1, fortal2, fortal3]}
+          positions={{ [fortal2]: 'center 40%' }}
           delay={0.15}
         />
       </div>
@@ -474,25 +478,18 @@ const BolsaInsperSection = () => {
         >
           <span className="panel-accent" aria-hidden="true" />
           <p>
-            Em 2021, conheci o <Highlight>Insper</Highlight> e o <Highlight>Programa de Bolsas</Highlight>. Fiz a prova no meio da pandemia e fui
-            transparente no painel de bolsas.
+            No meio da pandemia do Covid, em 2021, eu conheci o Insper. Era uma instituição que rivalizava o ITA em termos de qualidade ed ensino e superior em infraestrutura. Apliquei para o Programa de Bolsas e Vestibular ainda no primeiro semestre, e fui aprovado de primeira para o curso de Engenharia de Computação!
           </p>
           <p>
-            Aprovado, mergulhei em entidades, atuei como <Highlight>NINJA</Highlight> e <Highlight>Embaixador</Highlight> e fui voluntário no
-            <Highlight> GAS</Highlight> e <Highlight>Aulas Solidárias</Highlight>. A oportunidade transformou minha trajetória.
+            Graças a essa bolsa, pude me mudar para a Toca da Raposa, a moradia para bolsistas do Insper e de fora de São Paulo, onde conheci muitas pessoas, com histórias e culturas diferentes, e que se tornaram grandes amigos. E parte dessas pessoas se tornaram meus atuais colegas de apartamento, com quem divido minhas angústias e conquistas, se tornando uma segunda família.
           </p>
           <p style={{ marginBottom: 0 }}>
-            O que mais levo é a rede de pessoas e a chance de retribuir. Esse espírito me acompanha para os próximos passos.
+            Desde então, foram 4 anos cheios de oportunidades, desafios e aprendizados. Participei de várias entidades estudantis, projetos e eventos que ampliaram minha visão de mundo e me conectaram com pessoas incríveis. Agora, a bolsa abre mais uma oportunidade: o intercâmbio na Alemanha, que é um sonho antigo e uma chance de expandir ainda mais meus horizontes acadêmicos e profissionais.
           </p>
         </motion.div>
         <AccordionGallery
-          images={[
-            'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1523580846011-44a1a0f6c47c?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1523580846011-44b1f0a6c47d?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1523246192058-8f2f1a6c7d8b?q=80&w=1200&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200&auto=format&fit=crop'
-          ]}
+          images={[insper1, insper2, insper3, insper4, insper5, insper6]}
+          positions={{ [insper1]: 'center 45%', [insper3]: 'center 35%' }}
           delay={0.2}
         />
       </div>
@@ -524,22 +521,108 @@ const PlanningSection = () => {
 
         <motion.div
           className="exchange-panel exchange-panel--red"
-          style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'left' }}
+          style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'left' }}
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <h3>Estimativa de Custos</h3>
-          <p>Planejamento detalhado dos custos envolvidos incluindo mensalidade, moradia, alimentação, transporte e documentação necessária para o período de intercâmbio.</p>
-        </motion.div>
-
-        <motion.div
-          className="exchange-panel exchange-panel--red exchange-panel--alt"
-          style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left' }}
-          {...motionProps.fadeInUp(0.1)}
-        >
-          <span className="panel-accent" aria-hidden="true" />
-          <h3>Estratégias de Financiamento</h3>
-          <p>Pesquisa por bolsas de estudo, programas governamentais, parcerias institucionais e planejamento de economia pessoal para viabilizar o projeto.</p>
+          <table className="budget-table" aria-label="Planejamento Financeiro">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Mínimo (R$)</th>
+                <th>Esperado (R$)</th>
+                <th>Mínimo (€)</th>
+                <th>Esperado (€)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Mensalidades variáveis */}
+              <tr>
+                <td>Acomodação</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Alimentação</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Transporte</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Utilidades</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Despesas domésticas</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Plano de celular</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Health insurance</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr className="row-subtotal">
+                <td>Subtotal mensal</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr className="row-semester">
+                <td>Semestre (×6)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr className="row-fixed-start">
+                <td>Passagens aéreas</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Reserva de emergência</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr className="row-total">
+                <td>Total estimado</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </motion.div>
       </div>
     </section>
@@ -570,59 +653,82 @@ const ExchangeContact = () => {
 
         <motion.div
           className="exchange-panel"
-          style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'left' }}
-          {...motionProps.fadeInUp(0)}
-        >
-          <span className="panel-accent" aria-hidden="true" />
-          <h3>Compartilhe Conhecimento</h3>
-          <p>Se você tem experiência com intercâmbio na Alemanha, pode compartilhar dicas valiosas sobre documentação, adaptação cultural e vida acadêmica.</p>
-        </motion.div>
-
-        <motion.div
-          className="exchange-panel exchange-panel--alt"
-          style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'left' }}
-          {...motionProps.fadeInUp(0.1)}
-        >
-          <span className="panel-accent" aria-hidden="true" />
-          <h3>Networking e Conexões</h3>
-          <p>Conecte-me com profissionais, instituições ou outros estudantes que possam enriquecer esta jornada acadêmica e profissional.</p>
-        </motion.div>
-
-        <motion.div
-          className="exchange-panel"
-          style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}
+          style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'left' }}
           {...motionProps.fadeInUp(0.2)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <h3>Vamos Conversar</h3>
-          <p style={{ 
-            fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
-            color: '#cbd5e1',
-            lineHeight: '1.7',
-            marginBottom: '2rem'
-          }}>
-            Interessado em ajudar ou quer saber mais detalhes sobre este projeto? Entre em contato comigo!
-          </p>
+          <h3>Como Ajudar</h3>
 
-          <motion.div
-            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
-            {...motionProps.scaleIn(0.6)}
-          >
-            <Button href="mailto:contato@example.com" variant="primary" style={{
-              fontSize: '1.1rem',
-              padding: '1rem 2.5rem',
-              textDecoration: 'none'
-            }}>
-              Enviar Email
-            </Button>
-            <Button href="/#contact" style={{
-              fontSize: '1.1rem',
-              padding: '1rem 2.5rem',
-              textDecoration: 'none'
-            }}>
-              Seção Contato
-            </Button>
-          </motion.div>
+          {/* Grid de doações: dois grandes (PIX e Wise) lado a lado, dois menores (TED e Compartilhar) abaixo */}
+          <div className="donations-grid">
+            {/* Card PIX */}
+            <div className="span-7" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.25rem' }}>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.15rem', letterSpacing: '.3px' }}>PIX</h4>
+              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Escaneie o QR Code ou copie a chave para doar via PIX.</p>
+              <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+                {/* Placeholder do QRCode */}
+                <div style={{ width: 200, height: 200, borderRadius: 8, background: 'repeating-linear-gradient(45deg, var(--color-border) 0 6px, transparent 6px 12px)', border: '1px solid var(--color-border-strong)' }} aria-label="QR Code PIX" />
+                <div style={{ minWidth: 240 }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--color-text-secondary)', wordBreak: 'break-all', background: 'rgba(2,6,23,0.35)', border: '1px solid var(--color-border)', borderRadius: 8, padding: '0.6rem 0.75rem' }}>
+                    chave-pix-aqui@exemplo.com
+                  </div>
+                  <div className="donations-actions" style={{ marginTop: 10 }}>
+                    <Button as="button" onClick={() => navigator.clipboard?.writeText('chave-pix-aqui@exemplo.com')} variant="primary">Copiar chave</Button>
+                    <Button href="#">Abrir no app</Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card Wise */}
+            <div className="span-5" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.25rem' }}>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.15rem', letterSpacing: '.3px' }}>Transferência internacional (Wise)</h4>
+              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Use os dados abaixo para transferência direta para a conta internacional.</p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                <div>
+                  <small style={{ color: 'var(--color-text-muted)' }}>Nome</small>
+                  <div style={{ fontFamily: 'var(--font-mono)' }}>Seu Nome</div>
+                </div>
+                <div>
+                  <small style={{ color: 'var(--color-text-muted)' }}>Banco</small>
+                  <div style={{ fontFamily: 'var(--font-mono)' }}>Wise</div>
+                </div>
+                <div>
+                  <small style={{ color: 'var(--color-text-muted)' }}>IBAN</small>
+                  <div style={{ fontFamily: 'var(--font-mono)', wordBreak: 'break-all' }}>DE00 0000 0000 0000 0000 00</div>
+                </div>
+                <div>
+                  <small style={{ color: 'var(--color-text-muted)' }}>BIC/SWIFT</small>
+                  <div style={{ fontFamily: 'var(--font-mono)' }}>TRWIBEB1XXX</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card TED */}
+            <div className="span-5" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.1rem' }}>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>TED</h4>
+              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Dados para transferência nacional.</p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--color-text-secondary)' }}>
+                <li>Banco: 000 - Nome do Banco</li>
+                <li>Agência: 0000</li>
+                <li>Conta: 000000-0</li>
+                <li>Favorecido: Seu Nome</li>
+                <li>CPF: 000.000.000-00</li>
+              </ul>
+            </div>
+
+            {/* Card Compartilhar */}
+            <div className="span-7" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.1rem' }}>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>Compartilhe</h4>
+              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Se não puder contribuir agora, compartilhar já ajuda muito!</p>
+              <div className="donations-actions">
+                <Button as="button" onClick={() => navigator.share ? navigator.share({ title: 'Ajude no intercâmbio', url: window.location.href }) : window.open(`https://wa.me/?text=${encodeURIComponent(window.location.href)}`, '_blank')} variant="primary">WhatsApp</Button>
+                <Button href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer">Facebook</Button>
+                <Button href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Ajude%20no%20interc%C3%A2mbio`} target="_blank" rel="noopener noreferrer">Twitter</Button>
+                <Button as="button" onClick={() => navigator.clipboard?.writeText(window.location.href)}>Copiar link</Button>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -902,6 +1008,164 @@ const ExchangeSections = () => {
         #interchange-scroll .exchange-panel p + ul,
         #interchange-scroll .exchange-panel p + img {
           margin-top: 0.75rem;
+        }
+
+        /* Tabela de orçamento - sem linhas verticais e linhas horizontais metalizadas */
+        #interchange-scroll .budget-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.98rem;
+          color: var(--color-text-secondary);
+          table-layout: auto;
+        }
+        #interchange-scroll .budget-table thead th {
+          text-align: left;
+          font-weight: 700;
+          color: var(--color-text-primary);
+          padding: 0.85rem 0.75rem;
+          background: none; /* cabeçalho mais sutil, sem bloco de cor */
+        }
+        #interchange-scroll .budget-table th,
+        #interchange-scroll .budget-table td {
+          padding: 0.85rem 1.25rem; /* mais espaço interno */
+        }
+        /* Espaço extra perceptível entre colunas */
+        #interchange-scroll .budget-table th + th,
+        #interchange-scroll .budget-table td + td {
+          padding-left: 2rem;
+        }
+        /* Itens: linhas mais justas (menos altura) */
+        #interchange-scroll .budget-table tbody tr:not(.row-subtotal):not(.row-semester):not(.row-total) td {
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+        }
+        /* Espaço extra perceptível entre colunas */
+        #interchange-scroll .budget-table th + th,
+        #interchange-scroll .budget-table td + td {
+          padding-left: 2rem;
+        }
+        /* Itens: linhas mais justas (menos altura) */
+        #interchange-scroll .budget-table tbody tr:not(.row-subtotal):not(.row-semester):not(.row-total) td {
+          padding-top: 0.55rem;
+          padding-bottom: 0.55rem;
+        }
+        /* Linhas horizontais metalizadas */
+        #interchange-scroll .budget-table tr {
+          border-bottom: 1px solid var(--color-border); /* linhas sólidas, sem degradê */
+        }
+        #interchange-scroll .budget-table tbody tr:hover {
+          background-color: rgba(2,6,23,0.15);
+        }
+        /* Seções e destaques */
+        /* Espaço extra entre semestre e o primeiro gasto fixo */
+        #interchange-scroll .budget-table .row-fixed-start td {
+          padding-top: 0.85rem;
+        }
+        #interchange-scroll .budget-table .row-subtotal td:first-child,
+        #interchange-scroll .budget-table .row-semester td:first-child,
+        #interchange-scroll .budget-table .row-total td:first-child {
+          font-weight: 700;
+          color: var(--color-text-primary);
+          text-align: left; /* mesmo alinhamento do Item */
+          padding-left: 1.25rem; /* mesmo recuo do Item */
+        }
+        #interchange-scroll .budget-table .row-subtotal td {
+          font-weight: 600; /* mantém destaque, sem degradê */
+          padding-top: 1.4rem; /* margem grossa acima do subtotal */
+          padding-bottom: 0.6rem; /* margem fina abaixo do subtotal */
+        }
+        #interchange-scroll .budget-table .row-semester td {
+          font-weight: 600;
+          padding-top: 0.6rem; /* margem fina acima do semestre */
+          padding-bottom: 1.4rem; /* margem grossa abaixo do semestre */
+        }
+        #interchange-scroll .budget-table .row-total td {
+          /* sem degradê, mais largo e bem separado */
+          padding-top: 1.2rem;
+          padding-bottom: 1.2rem;
+          font-weight: 700;
+        }
+        /* Separadores: grossa antes do Subtotal, fina entre Subtotal/Semestre, grossa após Semestre e Total */
+        #interchange-scroll .budget-table .row-subtotal td {
+          border-top: 2px solid var(--color-border-strong);
+          border-bottom: 1px solid var(--color-border); /* fina abaixo do subtotal */
+        }
+        #interchange-scroll .budget-table .row-semester td {
+          border-top: 1px solid var(--color-border); /* fina acima do semestre */
+          border-bottom: 2px solid var(--color-border-strong); /* grossa abaixo do semestre */
+        }
+        #interchange-scroll .budget-table .row-total td {
+          border-top: 2px solid var(--color-border-strong);
+          border-bottom: 2px solid var(--color-border-strong);
+        }
+        /* Sem linhas verticais explicitamente */
+        #interchange-scroll .budget-table th,
+        #interchange-scroll .budget-table td {
+          border-left: none;
+          border-right: none;
+        }
+
+        /* Grid responsivo dos cards de doação */
+        #interchange-scroll .donations-grid {
+          display: grid;
+          gap: 16px;
+          grid-template-columns: repeat(12, 1fr);
+          align-items: stretch;
+          grid-auto-flow: dense;
+        }
+        /* Ações/Buttons padronizados dentro da seção de doações */
+        #interchange-scroll .donations-actions {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+        #interchange-scroll .donations-actions .btn {
+          border: 1px solid var(--color-border);
+          background: var(--color-surface);
+          color: var(--color-text-primary);
+          font-weight: 600;
+          letter-spacing: .3px;
+          padding: 0.6rem 1rem;
+          border-radius: 8px;
+        }
+        #interchange-scroll .donations-actions .btn--primary {
+          background: var(--color-accent);
+          border-color: var(--color-accent);
+          color: #fff;
+        }
+        #interchange-scroll .donations-actions .btn:hover {
+          border-color: var(--color-border-strong);
+          background: var(--color-surface-alt);
+        }
+        #interchange-scroll .donations-actions .btn--primary:hover {
+          background: #1d4ed8;
+        }
+        /* Col spans (desktop) */
+        #interchange-scroll .donations-grid .span-12 { grid-column: span 12; }
+        #interchange-scroll .donations-grid .span-8 { grid-column: span 8; }
+        #interchange-scroll .donations-grid .span-7 { grid-column: span 7; }
+        #interchange-scroll .donations-grid .span-6 { grid-column: span 6; }
+        #interchange-scroll .donations-grid .span-5 { grid-column: span 5; }
+        #interchange-scroll .donations-grid .span-4 { grid-column: span 4; }
+        @media (max-width: 900px) {
+          #interchange-scroll .donations-grid {
+            grid-template-columns: repeat(6, 1fr);
+          }
+          #interchange-scroll .donations-grid .span-8,
+          #interchange-scroll .donations-grid .span-7,
+          #interchange-scroll .donations-grid .span-6,
+          #interchange-scroll .donations-grid .span-5,
+          #interchange-scroll .donations-grid .span-4 { grid-column: span 6; }
+        }
+        @media (max-width: 600px) {
+          #interchange-scroll .donations-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+          #interchange-scroll .donations-grid .span-8,
+          #interchange-scroll .donations-grid .span-7,
+          #interchange-scroll .donations-grid .span-6,
+          #interchange-scroll .donations-grid .span-5,
+          #interchange-scroll .donations-grid .span-4 { grid-column: span 4; }
         }
       `}</style>
       {/* Conteúdo principal */}

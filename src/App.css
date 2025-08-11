@@ -344,7 +344,7 @@ a:hover {
       background: linear-gradient(145deg, rgba(255, 206, 0, 0.08), rgba(0, 0, 0, 0.3));
     }
     
-    .exchange-panel--red:hover {
+                .exchange-panel--red:hover {
       border-color: rgba(221, 0, 0, 0.8);
     }
                 .exchange-panel--yellow:hover {
@@ -353,56 +353,59 @@ a:hover {
         .exchange-panel:hover {
           border-color: var(--ex-border-strong);
         
-                .exchange-cta {
-                  background: var(--color-surface-alt);
-                  border: 1px solid var(--ex-border);
-                  padding: 3rem 2rem;
-                  border-radius: 14px;
-                  text-align: center;
-                  max-width: 800px;
-                  margin: 4rem auto 0;
-                }
-                .exchange-cta h4 {
-                  margin: 0 0 1.5rem;
-                  font-size: 1.3rem;
-                  letter-spacing: .5px;
-                  text-transform: none;
-                  color: var(--color-accent);
-                  font-weight: 600;
-                }
-                .exchange-cta p {
-                  margin: 0 0 1.8rem;
-                  font-size: 1rem;
-                  line-height: 1.6;
-                  color: var(--color-text-secondary);
-                }
-        
-                .keyword,
-                .keyword-alt {
-                  color: var(--color-accent);
-                  font-weight: 600;
-                }
+.exchange-cta {
+  background: var(--color-surface-alt);
+  border: 1px solid var(--ex-border);
+  padding: 3rem 2rem;
+  border-radius: 14px;
+  text-align: center;
+  max-width: 800px;
+  margin: 4rem auto 0;
+}
+
+.exchange-cta h4 {
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+  letter-spacing: .5px;
+  text-transform: none;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.exchange-cta p {
+  margin: 0 0 1.8rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.keyword,
+.keyword-alt {
+  color: var(--color-accent);
+  font-weight: 600;
+}
 @media (max-width: 640px) {
   .exchange-panel--full .exchange-panel__inner {
     padding: 1.4rem 1.1rem 1.5rem;
   }
-  
-    .exchange-panel {
-      padding: 1.4rem 1.2rem 1.6rem;
-      margin: 1rem auto;
-    }
+.exchange-panel {
+  padding: 1.4rem 1.2rem 1.6rem;
+  margin: 1rem auto;
+}
+
     .exchange-panel h3 {
       font-size: 1rem;
   
-    .exchange-panel p {
-      font-size: 0.9rem;
+.exchange-panel p {
+  font-size: 0.9rem;
   }
+
     .exchange-cta {
       padding: 2rem 1.5rem;
       margin: 3rem auto 0;
   
-    .exchange-heading::after {
-      width: 80px;
-      height: 3px;
+.exchange-heading::after {
+  width: 80px;
+  height: 3px;
   }
 }

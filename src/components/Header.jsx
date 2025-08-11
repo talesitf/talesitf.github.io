@@ -49,8 +49,14 @@ const Header = () => {
     <header className={`header ${isScrolled ? 'header--scrolled' : ''} ${isExchangePage ? 'header--compact' : ''}`}>
       <div className="header__container">
         {/* Logo */}
-        <Link to="/" className="header__logo">
-          <span className="header__logo-text">TF</span>
+        <Link to="/" className="header__logo" aria-label="Ir para a Home">
+          <img
+            src="/Gemini_Generated_Image_arqv49arqv49arqv.png"
+            alt="Logo Tales Ivalq"
+            className="header__logo-img"
+            loading="eager"
+            decoding="async"
+          />
         </Link>
 
         {/* Desktop Navigation */}
