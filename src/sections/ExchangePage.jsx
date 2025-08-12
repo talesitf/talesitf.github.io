@@ -687,7 +687,7 @@ const ExchangeContact = () => {
   return (
     <section id="como-ajudar" className="section" style={{
       // padding-top removido
-      padding: isMobile ? `0 0 3rem` : '0 0 3rem',
+      padding: isMobile ? `1.5rem 0 3rem` : '0 0 3rem',
       background: 'transparent',
       width: '100%',
       // No mobile deixa altura auto para não cortar grid; em desktop mantém uma altura confortável
@@ -698,17 +698,25 @@ const ExchangeContact = () => {
       scrollSnapStop: 'always',
       overflow: 'visible',
       // Compensa header fixo
-      scrollMarginTop: '70px'
+      scrollMarginTop: isMobile ? '80px' : '70px'
     }}>
-      <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle">
+      <div className="container" style={{ textAlign: 'center', paddingTop: isMobile ? '1rem' : 0 }}>
+        <h2 className="exchange-subtitle" style={{
+          marginBottom: '2rem',
+          fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : undefined
+        }}>
           Como Ajudar
         </h2>
         {/* Painel de contribuintes movido para seção final */}
 
         <motion.div
           className="exchange-panel"
-          style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'left' }}
+          style={{
+            maxWidth: '1100px',
+            margin: '0 auto',
+            textAlign: 'left',
+            padding: isMobile ? '1rem' : undefined
+          }}
           {...motionProps.fadeInUp(0.2)}
         >
           <span className="panel-accent" aria-hidden="true" />
@@ -736,12 +744,20 @@ const ExchangeContact = () => {
             <div className="span-7" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.25rem' }}>
               <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.15rem', letterSpacing: '.3px' }}>PIX</h4>
               <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Escaneie o QR Code ou copie a chave para doar via PIX.</p>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 16, alignItems: isMobile ? 'flex-start' : 'center', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row' }}>
                 {/* QRCode real */}
-                <div style={{ width: 200, height: 200, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--color-border-strong)', background: 'var(--color-surface-alt)' }} aria-label="QR Code PIX">
+                <div style={{
+                  width: isMobile ? 180 : 200,
+                  height: isMobile ? 180 : 200,
+                  borderRadius: 8,
+                  overflow: 'hidden',
+                  border: '1px solid var(--color-border-strong)',
+                  background: 'var(--color-surface-alt)',
+                  alignSelf: isMobile ? 'center' : 'auto'
+                }} aria-label="QR Code PIX">
                   <img src={pixQR} alt="QR Code do PIX" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 </div>
-                <div style={{ minWidth: 240 }}>
+                <div style={{ minWidth: isMobile ? '100%' : 240, textAlign: isMobile ? 'center' : 'left' }}>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--color-text-secondary)', wordBreak: 'break-all', background: 'rgba(2,6,23,0.35)', border: '1px solid var(--color-border)', borderRadius: 8, padding: '0.6rem 0.75rem' }}>
                     {pixKey}
                   </div>
@@ -1296,30 +1312,61 @@ const ExchangeSections = () => {
         
         @media (max-width: 900px) {
           #interchange-scroll .donations-grid {
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: 1fr;
+            gap: 14px;
           }
           #interchange-scroll .donations-grid .span-8,
           #interchange-scroll .donations-grid .span-7,
           #interchange-scroll .donations-grid .span-6,
           #interchange-scroll .donations-grid .span-5,
           #interchange-scroll .donations-grid .span-4 { 
-            grid-column: span 6; 
+            grid-column: span 1; 
           }
         }
         
         @media (max-width: 600px) {
           #interchange-scroll .donations-grid {
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr;
+            gap: 12px;
           }
           #interchange-scroll .donations-grid .span-8,
           #interchange-scroll .donations-grid .span-7,
           #interchange-scroll .donations-grid .span-6,
           #interchange-scroll .donations-grid .span-5,
           #interchange-scroll .donations-grid .span-4 { 
-            grid-column: span 4; 
+            grid-column: span 1; 
           }
           #interchange-scroll #como-ajudar .donations-grid { 
             margin-top: 0.75rem; 
+          }
+          
+          /* Ajustes específicos para mobile */
+          #interchange-scroll .donations-grid > div {
+            width: 100%;
+            min-height: auto;
+          }
+          
+          /* QR Code responsivo */
+          #interchange-scroll .donations-grid img {
+            max-width: 150px;
+            height: auto;
+          }
+          
+          /* Flex no PIX card para mobile */
+          #interchange-scroll .donations-grid .span-7 > div:last-child {
+            flex-direction: column;
+            gap: 12px;
+          }
+          
+          /* Botões responsivos */
+          #interchange-scroll .donations-actions {
+            justify-content: center;
+            flex-wrap: wrap;
+          }
+          
+          #interchange-scroll .donations-actions .btn {
+            min-width: 120px;
+            text-align: center;
           }
         }
       `}</style>
