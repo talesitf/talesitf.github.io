@@ -690,10 +690,10 @@ const ExchangeContact = () => {
       padding: isMobile ? `0 0 3rem` : '0 0 3rem',
       background: 'transparent',
       width: '100%',
-      // Garantir altura mínima no mobile para não ser "pulada" pelo snap
-      minHeight: isMobile ? 'calc(100vh - 60px)' : 'min(80vh, calc(80vh - 60px))',
-      display: 'flex',
-      alignItems: 'center',
+      // No mobile deixa altura auto para não cortar grid; em desktop mantém uma altura confortável
+      minHeight: isMobile ? 'auto' : 'min(80vh, calc(80vh - 60px))',
+      display: isMobile ? 'block' : 'flex',
+      alignItems: isMobile ? undefined : 'center',
       scrollSnapAlign: 'start',
       scrollSnapStop: 'always',
       overflow: 'visible',
@@ -1307,6 +1307,8 @@ const ExchangeSections = () => {
           #interchange-scroll .donations-grid .span-6,
           #interchange-scroll .donations-grid .span-5,
           #interchange-scroll .donations-grid .span-4 { grid-column: span 4; }
+          /* Espaço extra para evitar que o primeiro card fique encostado no topo após scroll */
+          #interchange-scroll #como-ajudar .donations-grid { margin-top: 0.75rem; }
         }
       `}</style>
       {/* Conteúdo principal */}
