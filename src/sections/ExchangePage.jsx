@@ -261,25 +261,26 @@ const ExchangeHero = () => {
             </p>
 
             <motion.div style={{ textAlign: 'left', display: 'flex', gap: '0.8rem', justifyContent: 'flex-start', flexWrap: 'wrap' }} {...motionProps.scaleIn(0.6)}>
-              <Button href="#como-ajudar" variant="primary" style={{
-                fontSize: '1.05rem',
-                padding: '0.9rem 2.2rem',
-                textDecoration: 'none'
-              }}>
+              <Button
+                as="button"
+                onClick={() => document.getElementById('como-ajudar')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                variant="primary"
+                style={{ fontSize: '1.05rem', padding: '0.9rem 2.2rem' }}
+              >
                 Apoiar Agora
               </Button>
-              <Button href="#planejamento" style={{
-                fontSize: '1.05rem',
-                padding: '0.9rem 2.1rem',
-                textDecoration: 'none'
-              }}>
+              <Button
+                as="button"
+                onClick={() => document.getElementById('planejamento')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                style={{ fontSize: '1.05rem', padding: '0.9rem 2.1rem' }}
+              >
                 Ver Custos
               </Button>
-              <Button href="#thi" style={{
-                fontSize: '1.05rem',
-                padding: '0.9rem 2.1rem',
-                textDecoration: 'none'
-              }}>
+              <Button
+                as="button"
+                onClick={() => document.getElementById('thi')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                style={{ fontSize: '1.05rem', padding: '0.9rem 2.1rem' }}
+              >
                 Instituição
               </Button>
             </motion.div>
@@ -689,13 +690,15 @@ const ExchangeContact = () => {
       padding: isMobile ? `0 0 3rem` : '0 0 3rem',
       background: 'transparent',
       width: '100%',
-      minHeight: isMobile ? 'auto' : 'min(80vh, calc(80vh - 60px))',
+      // Garantir altura mínima no mobile para não ser "pulada" pelo snap
+      minHeight: isMobile ? 'calc(100vh - 60px)' : 'min(80vh, calc(80vh - 60px))',
       display: 'flex',
       alignItems: 'center',
       scrollSnapAlign: 'start',
       scrollSnapStop: 'always',
       overflow: 'visible',
-      scrollMarginTop: `0px`
+      // Compensa header fixo
+      scrollMarginTop: '70px'
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="exchange-subtitle">

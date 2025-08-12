@@ -38,6 +38,13 @@ const InterchangePage = () => {
           paddingBottom: 0
         }}
       >
+        {/* Ajustes responsivos adicionais */}
+        <style>{`
+          #interchange-scroll { scroll-behavior: smooth; }
+          @media (max-width: 767px) {
+            #interchange-scroll { scroll-snap-type: y proximity; }
+          }
+        `}</style>
         <ExchangeSections />
 
         {/* Footer dentro do contêiner de scroll para evitar 2º scrollbar */}
