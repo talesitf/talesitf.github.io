@@ -137,20 +137,20 @@ Cícero Oliveira
 `).map(r=>r.trim()).filter(r=>r.length>0&&!r.startsWith("#")).map(r=>({name:r})),s=Array.isArray(Pn.contributors)&&Pn.contributors.length>0?Pn.contributors:i;return v.jsx("section",{id:"contribuintes",className:"section",style:{padding:"0 0 2rem",background:"transparent",width:"100%",minHeight:"auto",display:"flex",alignItems:"center",scrollSnapAlign:"end",scrollSnapStop:"always",overflow:"visible",scrollMarginTop:"0px"},children:v.jsxs("div",{className:"container",style:{textAlign:"center"},children:[v.jsx("h2",{className:"exchange-subtitle",children:"Contribuintes"}),v.jsxs("div",{className:"exchange-panel",style:{maxWidth:1100,margin:"0 auto 1.25rem",textAlign:"left"},children:[v.jsx("span",{className:"panel-accent","aria-hidden":"true"}),Array.isArray(s)&&s.length>0?v.jsx("ul",{style:{listStyle:"none",padding:0,margin:0,display:"grid",gap:10,gridTemplateColumns:"repeat(2, minmax(0, 1fr))"},children:s.map((r,c)=>v.jsxs("li",{style:{border:"1px solid var(--color-border)",borderRadius:10,padding:"0.6rem 0.75rem",background:"var(--color-surface)"},children:[v.jsxs("div",{style:{display:"flex",justifyContent:"space-between",gap:10,alignItems:"baseline"},children:[v.jsx("strong",{style:{color:"var(--color-text-primary)"},children:r.name||"Anônimo"}),r.amountBRL!=null&&r.amountBRL!==""?v.jsxs("span",{style:{color:"var(--color-text-secondary)",fontFamily:"var(--font-mono)"},children:["R$ ",(Number(r.amountBRL)||0).toLocaleString("pt-BR")]}):null]}),r.message?v.jsx("div",{style:{color:"var(--color-text-secondary)",marginTop:4,fontSize:14},children:r.message}):null]},c))}):v.jsx("p",{style:{color:"var(--color-text-secondary)",margin:0},children:"Ainda não há contribuições registradas."})]})]})})},fM=({sections:a})=>{const[i,s]=R.useState(a?.[0]?.id),[r,c]=R.useState(!1),[f,d]=R.useState(!1),[g,m]=R.useState(null);R.useEffect(()=>{const S=window.matchMedia("(min-width: 1024px)"),C=window.matchMedia("(max-width: 767px)"),N=()=>{c(S.matches),d(C.matches)};return N(),S.addEventListener("change",N),C.addEventListener("change",N),()=>{S.removeEventListener("change",N),C.removeEventListener("change",N)}},[]),R.useEffect(()=>{const S=[],C=document.getElementById("interchange-scroll")||null;return a.forEach(({id:N})=>{const H=document.getElementById(N);if(!H)return;const L=new IntersectionObserver(z=>{z.forEach(k=>{k.isIntersecting&&s(N)})},{root:C,rootMargin:"0px 0px -15% 0px",threshold:.6});L.observe(H),S.push(L)}),()=>S.forEach(N=>N.disconnect())},[a]);const h=S=>{const C=document.getElementById(S);C&&C.scrollIntoView({behavior:"smooth",block:"start"})};if(f)return null;const y={position:"fixed",top:"50%",transform:"translateY(-50%)",display:"flex",flexDirection:"column",gap:10,zIndex:40};r?y.left=18:y.right=18;const x=()=>Object.assign({position:"absolute",top:"50%",transform:"translateY(-50%)",padding:"4px 8px",background:"rgba(2,6,23,0.9)",border:"1px solid #2c567e",borderRadius:6,color:"#cbd5e1",whiteSpace:"nowrap",fontSize:12,pointerEvents:"none",zIndex:41},r?{left:"calc(100% + 8px)"}:{right:"calc(100% + 8px)"});return v.jsxs("div",{"aria-hidden":"false","aria-label":"Mapa da página",style:y,children:[v.jsx("button",{onClick:()=>h(a[0]?.id),title:"Topo","aria-label":"Voltar ao topo",style:{width:14,height:14,borderRadius:999,border:"1px solid #2c567e",background:"transparent",opacity:.7,transition:"all .2s ease",position:"relative"},onMouseEnter:()=>m("top"),onMouseLeave:()=>m(null),children:g==="top"&&v.jsx("span",{style:x(),children:"Topo"})}),a.map(({id:S,label:C})=>v.jsxs("div",{style:{position:"relative"},children:[v.jsx("button",{onClick:()=>h(S),title:C,"aria-label":C,"aria-current":i===S?"true":"false",onMouseEnter:()=>m(S),onMouseLeave:()=>m(null),style:{width:i===S?12:10,height:i===S?12:10,borderRadius:999,border:"1px solid #2c567e",background:i===S?"#3b82f6":"transparent",opacity:i===S?1:.6,transition:"all .2s ease"}}),g===S&&v.jsx("span",{style:x(),children:C})]},S))]})},dM=()=>v.jsx("div",{style:{position:"fixed",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(2, 6, 23, 0.95)",backdropFilter:"blur(10px)",zIndex:9999,color:"#f8fafc",textAlign:"center",padding:"2rem"},children:v.jsxs(ae.div,{style:{maxWidth:420},initial:{opacity:0,scale:.9},animate:{opacity:1,scale:1},transition:{duration:.4},children:[v.jsx("div",{style:{fontSize:"3.5rem",marginBottom:"1rem"},children:"📱"}),v.jsx("h2",{style:{fontSize:"1.5rem",marginBottom:"0.75rem",color:"#93c5fd"},children:"Melhor experiência em portrait"}),v.jsx("p",{style:{fontSize:"1.08rem",lineHeight:1.6,color:"#cbd5e1",marginBottom:"1.25rem"},children:"Para uma melhor experiência de navegação, por favor gire seu dispositivo para o modo vertical (portrait)."}),v.jsx(ae.div,{style:{fontSize:"2rem"},animate:{rotate:[0,12,-12,0]},transition:{duration:2,repeat:1/0,ease:"easeInOut"},children:"🔄"})]})}),hM=[{id:"exchange-hero",label:"Início"},{id:"criacao",label:"Criação"},{id:"destaque-olimpico",label:"Destaque Olímpico"},{id:"primeira-independencia",label:"Primeira Independência"},{id:"bolsa-insper",label:"Bolsa Insper"},{id:"planejamento",label:"Financeiro"},{id:"como-ajudar",label:"Como Ajudar"},{id:"thi",label:"THI"}],mM=()=>{const a=hM;return eM()?v.jsx(dM,{}):v.jsxs(v.Fragment,{children:[v.jsx("style",{children:`
         /* Escopo: aplica apenas dentro do contêiner de intercâmbio */
         #interchange-scroll .exchange-panel p {
-          text-indent: 1.15em; /* indenta primeira linha */
-          margin: 0.5rem 0 0.9rem; /* respiro entre parágrafos */
+          text-indent: 1.15em;
+          margin: 0.5rem 0 0.9rem;
         }
-        /* Primeiro parágrafo de cada painel sem indentação para alinhamento com o título */
+        
         #interchange-scroll .exchange-panel p:first-of-type {
           text-indent: 0;
         }
-        /* Parágrafos imediatamente antes de listas ou imagens podem ter margem extra se necessário */
+        
         #interchange-scroll .exchange-panel p + ul,
         #interchange-scroll .exchange-panel p + img {
           margin-top: 0.75rem;
         }
 
-        /* Tabela de orçamento - sem linhas verticais e linhas horizontais metalizadas */
+        /* Tabela de orçamento */
         #interchange-scroll .budget-table {
           width: 100%;
           border-collapse: collapse;
@@ -158,87 +158,84 @@ Cícero Oliveira
           color: var(--color-text-secondary);
           table-layout: auto;
         }
+        
         #interchange-scroll .budget-table thead th {
           text-align: left;
           font-weight: 700;
           color: var(--color-text-primary);
           padding: 0.85rem 0.75rem;
-          background: none; /* cabeçalho mais sutil, sem bloco de cor */
+          background: none;
         }
+        
         #interchange-scroll .budget-table th,
         #interchange-scroll .budget-table td {
-          padding: 0.85rem 1.25rem; /* mais espaço interno */
+          padding: 0.85rem 1.25rem;
         }
-        /* Espaço extra perceptível entre colunas */
+        
         #interchange-scroll .budget-table th + th,
         #interchange-scroll .budget-table td + td {
           padding-left: 2rem;
         }
-        /* Itens: linhas mais justas (menos altura) */
-        #interchange-scroll .budget-table tbody tr:not(.row-subtotal):not(.row-semester):not(.row-total) td {
-          padding-top: 0.5rem;
-          padding-bottom: 0.5rem;
-        }
-        /* Espaço extra perceptível entre colunas */
-        #interchange-scroll .budget-table th + th,
-        #interchange-scroll .budget-table td + td {
-          padding-left: 2rem;
-        }
-        /* Itens: linhas mais justas (menos altura) */
+        
         #interchange-scroll .budget-table tbody tr:not(.row-subtotal):not(.row-semester):not(.row-total) td {
           padding-top: 0.55rem;
           padding-bottom: 0.55rem;
         }
-        /* Linhas horizontais metalizadas */
+        
         #interchange-scroll .budget-table tr {
-          border-bottom: 1px solid var(--color-border); /* linhas sólidas, sem degradê */
+          border-bottom: 1px solid var(--color-border);
         }
+        
         #interchange-scroll .budget-table tbody tr:hover {
           background-color: rgba(2,6,23,0.15);
         }
-        /* Seções e destaques */
-        /* Espaço extra entre semestre e o primeiro gasto fixo */
+        
         #interchange-scroll .budget-table .row-fixed-start td {
           padding-top: 0.85rem;
         }
+        
         #interchange-scroll .budget-table .row-subtotal td:first-child,
         #interchange-scroll .budget-table .row-semester td:first-child,
         #interchange-scroll .budget-table .row-total td:first-child {
           font-weight: 700;
           color: var(--color-text-primary);
-          text-align: left; /* mesmo alinhamento do Item */
-          padding-left: 1.25rem; /* mesmo recuo do Item */
+          text-align: left;
+          padding-left: 1.25rem;
         }
+        
         #interchange-scroll .budget-table .row-subtotal td {
-          font-weight: 600; /* mantém destaque, sem degradê */
-          padding-top: 1.4rem; /* margem grossa acima do subtotal */
-          padding-bottom: 0.6rem; /* margem fina abaixo do subtotal */
+          font-weight: 600;
+          padding-top: 1.4rem;
+          padding-bottom: 0.6rem;
         }
+        
         #interchange-scroll .budget-table .row-semester td {
           font-weight: 600;
-          padding-top: 0.6rem; /* margem fina acima do semestre */
-          padding-bottom: 1.4rem; /* margem grossa abaixo do semestre */
+          padding-top: 0.6rem;
+          padding-bottom: 1.4rem;
         }
+        
         #interchange-scroll .budget-table .row-total td {
-          /* sem degradê, mais largo e bem separado */
           padding-top: 1.2rem;
           padding-bottom: 1.2rem;
           font-weight: 700;
         }
-        /* Separadores: grossa antes do Subtotal, fina entre Subtotal/Semestre, grossa após Semestre e Total */
+        
         #interchange-scroll .budget-table .row-subtotal td {
           border-top: 2px solid var(--color-border-strong);
-          border-bottom: 1px solid var(--color-border); /* fina abaixo do subtotal */
+          border-bottom: 1px solid var(--color-border);
         }
+        
         #interchange-scroll .budget-table .row-semester td {
-          border-top: 1px solid var(--color-border); /* fina acima do semestre */
-          border-bottom: 2px solid var(--color-border-strong); /* grossa abaixo do semestre */
+          border-top: 1px solid var(--color-border);
+          border-bottom: 2px solid var(--color-border-strong);
         }
+        
         #interchange-scroll .budget-table .row-total td {
           border-top: 2px solid var(--color-border-strong);
           border-bottom: 2px solid var(--color-border-strong);
         }
-        /* Sem linhas verticais explicitamente */
+        
         #interchange-scroll .budget-table th,
         #interchange-scroll .budget-table td {
           border-left: none;
@@ -253,12 +250,13 @@ Cícero Oliveira
           align-items: stretch;
           grid-auto-flow: dense;
         }
-        /* Ações/Buttons padronizados dentro da seção de doações */
+        
         #interchange-scroll .donations-actions {
           display: flex;
           gap: 10px;
           flex-wrap: wrap;
         }
+        
         #interchange-scroll .donations-actions .btn {
           border: 1px solid var(--color-border);
           background: var(--color-surface);
@@ -268,26 +266,34 @@ Cícero Oliveira
           padding: 0.6rem 1rem;
           border-radius: 8px;
         }
+        
         #interchange-scroll .donations-actions .btn--primary {
           background: var(--color-accent);
           border-color: var(--color-accent);
           color: #fff;
         }
+        
         #interchange-scroll .donations-actions .btn:hover {
           border-color: var(--color-border-strong);
           background: var(--color-surface-alt);
         }
+        
         #interchange-scroll .donations-actions .btn--primary:hover {
           background: #1d4ed8;
         }
-  #interchange-scroll .btn--icon svg { vertical-align: middle; }
-        /* Col spans (desktop) */
+        
+        #interchange-scroll .btn--icon svg { 
+          vertical-align: middle; 
+        }
+        
+        /* Col spans */
         #interchange-scroll .donations-grid .span-12 { grid-column: span 12; }
         #interchange-scroll .donations-grid .span-8 { grid-column: span 8; }
         #interchange-scroll .donations-grid .span-7 { grid-column: span 7; }
         #interchange-scroll .donations-grid .span-6 { grid-column: span 6; }
         #interchange-scroll .donations-grid .span-5 { grid-column: span 5; }
         #interchange-scroll .donations-grid .span-4 { grid-column: span 4; }
+        
         @media (max-width: 900px) {
           #interchange-scroll .donations-grid {
             grid-template-columns: repeat(6, 1fr);
@@ -296,8 +302,11 @@ Cícero Oliveira
           #interchange-scroll .donations-grid .span-7,
           #interchange-scroll .donations-grid .span-6,
           #interchange-scroll .donations-grid .span-5,
-          #interchange-scroll .donations-grid .span-4 { grid-column: span 6; }
+          #interchange-scroll .donations-grid .span-4 { 
+            grid-column: span 6; 
+          }
         }
+        
         @media (max-width: 600px) {
           #interchange-scroll .donations-grid {
             grid-template-columns: repeat(4, 1fr);
@@ -306,9 +315,12 @@ Cícero Oliveira
           #interchange-scroll .donations-grid .span-7,
           #interchange-scroll .donations-grid .span-6,
           #interchange-scroll .donations-grid .span-5,
-          #interchange-scroll .donations-grid .span-4 { grid-column: span 4; }
-          /* Espaço extra para evitar que o primeiro card fique encostado no topo após scroll */
-          #interchange-scroll #como-ajudar .donations-grid { margin-top: 0.75rem; }
+          #interchange-scroll .donations-grid .span-4 { 
+            grid-column: span 4; 
+          }
+          #interchange-scroll #como-ajudar .donations-grid { 
+            margin-top: 0.75rem; 
+          }
         }
       `}),v.jsxs("div",{children:[v.jsx(nM,{}),v.jsx(aM,{}),v.jsx(iM,{}),v.jsx(lM,{}),v.jsx(sM,{}),v.jsx(rM,{}),v.jsx(oM,{}),v.jsx(uM,{}),v.jsx(cM,{}),v.jsx(fM,{sections:a})]})]})},pM=()=>v.jsx("footer",{style:{background:"transparent",color:"#f8fafc",textAlign:"center",padding:"4rem 0 2rem",borderTop:"1px solid rgba(65, 105, 225, 0.3)",width:"100%"},children:v.jsxs("div",{className:"container",children:[v.jsx("p",{style:{fontFamily:"Inter, sans-serif",fontSize:"clamp(0.9rem, 2vw, 1rem)",fontWeight:"500",color:"#cbd5e1",marginBottom:"0.5rem"},children:"© 2025 Tales Ferreira. Todos os direitos reservados."}),v.jsx("p",{style:{color:"#6495ED",fontSize:"clamp(0.8rem, 1.8vw, 0.9rem)"},children:"Desenvolvido com ❤️ e muito ☕"})]})}),hc=()=>(R.useEffect(()=>{const a=document.body.style.overflow,i=document.documentElement.style.overflow;return document.body.style.overflow="hidden",document.documentElement.style.overflow="hidden",()=>{document.body.style.overflow=a,document.documentElement.style.overflow=i}},[]),v.jsxs("div",{className:"interchange-page",children:[v.jsx(sS,{}),v.jsxs("main",{id:"interchange-scroll",style:{marginTop:"60px",height:"min(100svh, calc(100vh - 60px))",overflowY:"auto",scrollSnapType:"y mandatory",scrollPaddingTop:"clamp(8px, 2.5vh, 20px)",WebkitOverflowScrolling:"touch",display:"flex",flexDirection:"column",paddingBottom:0},children:[v.jsx("style",{children:`
           #interchange-scroll { scroll-behavior: smooth; }
