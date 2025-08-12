@@ -1137,20 +1137,20 @@ const ExchangeSections = () => {
       <style>{`
         /* Escopo: aplica apenas dentro do contêiner de intercâmbio */
         #interchange-scroll .exchange-panel p {
-          text-indent: 1.15em; /* indenta primeira linha */
-          margin: 0.5rem 0 0.9rem; /* respiro entre parágrafos */
+          text-indent: 1.15em;
+          margin: 0.5rem 0 0.9rem;
         }
-        /* Primeiro parágrafo de cada painel sem indentação para alinhamento com o título */
+        
         #interchange-scroll .exchange-panel p:first-of-type {
           text-indent: 0;
         }
-        /* Parágrafos imediatamente antes de listas ou imagens podem ter margem extra se necessário */
+        
         #interchange-scroll .exchange-panel p + ul,
         #interchange-scroll .exchange-panel p + img {
           margin-top: 0.75rem;
         }
 
-        /* Tabela de orçamento - sem linhas verticais e linhas horizontais metalizadas */
+        /* Tabela de orçamento */
         #interchange-scroll .budget-table {
           width: 100%;
           border-collapse: collapse;
@@ -1158,87 +1158,84 @@ const ExchangeSections = () => {
           color: var(--color-text-secondary);
           table-layout: auto;
         }
+        
         #interchange-scroll .budget-table thead th {
           text-align: left;
           font-weight: 700;
           color: var(--color-text-primary);
           padding: 0.85rem 0.75rem;
-          background: none; /* cabeçalho mais sutil, sem bloco de cor */
+          background: none;
         }
+        
         #interchange-scroll .budget-table th,
         #interchange-scroll .budget-table td {
-          padding: 0.85rem 1.25rem; /* mais espaço interno */
+          padding: 0.85rem 1.25rem;
         }
-        /* Espaço extra perceptível entre colunas */
+        
         #interchange-scroll .budget-table th + th,
         #interchange-scroll .budget-table td + td {
           padding-left: 2rem;
         }
-        /* Itens: linhas mais justas (menos altura) */
-        #interchange-scroll .budget-table tbody tr:not(.row-subtotal):not(.row-semester):not(.row-total) td {
-          padding-top: 0.5rem;
-          padding-bottom: 0.5rem;
-        }
-        /* Espaço extra perceptível entre colunas */
-        #interchange-scroll .budget-table th + th,
-        #interchange-scroll .budget-table td + td {
-          padding-left: 2rem;
-        }
-        /* Itens: linhas mais justas (menos altura) */
+        
         #interchange-scroll .budget-table tbody tr:not(.row-subtotal):not(.row-semester):not(.row-total) td {
           padding-top: 0.55rem;
           padding-bottom: 0.55rem;
         }
-        /* Linhas horizontais metalizadas */
+        
         #interchange-scroll .budget-table tr {
-          border-bottom: 1px solid var(--color-border); /* linhas sólidas, sem degradê */
+          border-bottom: 1px solid var(--color-border);
         }
+        
         #interchange-scroll .budget-table tbody tr:hover {
           background-color: rgba(2,6,23,0.15);
         }
-        /* Seções e destaques */
-        /* Espaço extra entre semestre e o primeiro gasto fixo */
+        
         #interchange-scroll .budget-table .row-fixed-start td {
           padding-top: 0.85rem;
         }
+        
         #interchange-scroll .budget-table .row-subtotal td:first-child,
         #interchange-scroll .budget-table .row-semester td:first-child,
         #interchange-scroll .budget-table .row-total td:first-child {
           font-weight: 700;
           color: var(--color-text-primary);
-          text-align: left; /* mesmo alinhamento do Item */
-          padding-left: 1.25rem; /* mesmo recuo do Item */
+          text-align: left;
+          padding-left: 1.25rem;
         }
+        
         #interchange-scroll .budget-table .row-subtotal td {
-          font-weight: 600; /* mantém destaque, sem degradê */
-          padding-top: 1.4rem; /* margem grossa acima do subtotal */
-          padding-bottom: 0.6rem; /* margem fina abaixo do subtotal */
+          font-weight: 600;
+          padding-top: 1.4rem;
+          padding-bottom: 0.6rem;
         }
+        
         #interchange-scroll .budget-table .row-semester td {
           font-weight: 600;
-          padding-top: 0.6rem; /* margem fina acima do semestre */
-          padding-bottom: 1.4rem; /* margem grossa abaixo do semestre */
+          padding-top: 0.6rem;
+          padding-bottom: 1.4rem;
         }
+        
         #interchange-scroll .budget-table .row-total td {
-          /* sem degradê, mais largo e bem separado */
           padding-top: 1.2rem;
           padding-bottom: 1.2rem;
           font-weight: 700;
         }
-        /* Separadores: grossa antes do Subtotal, fina entre Subtotal/Semestre, grossa após Semestre e Total */
+        
         #interchange-scroll .budget-table .row-subtotal td {
           border-top: 2px solid var(--color-border-strong);
-          border-bottom: 1px solid var(--color-border); /* fina abaixo do subtotal */
+          border-bottom: 1px solid var(--color-border);
         }
+        
         #interchange-scroll .budget-table .row-semester td {
-          border-top: 1px solid var(--color-border); /* fina acima do semestre */
-          border-bottom: 2px solid var(--color-border-strong); /* grossa abaixo do semestre */
+          border-top: 1px solid var(--color-border);
+          border-bottom: 2px solid var(--color-border-strong);
         }
+        
         #interchange-scroll .budget-table .row-total td {
           border-top: 2px solid var(--color-border-strong);
           border-bottom: 2px solid var(--color-border-strong);
         }
-        /* Sem linhas verticais explicitamente */
+        
         #interchange-scroll .budget-table th,
         #interchange-scroll .budget-table td {
           border-left: none;
@@ -1253,12 +1250,13 @@ const ExchangeSections = () => {
           align-items: stretch;
           grid-auto-flow: dense;
         }
-        /* Ações/Buttons padronizados dentro da seção de doações */
+        
         #interchange-scroll .donations-actions {
           display: flex;
           gap: 10px;
           flex-wrap: wrap;
         }
+        
         #interchange-scroll .donations-actions .btn {
           border: 1px solid var(--color-border);
           background: var(--color-surface);
@@ -1268,26 +1266,34 @@ const ExchangeSections = () => {
           padding: 0.6rem 1rem;
           border-radius: 8px;
         }
+        
         #interchange-scroll .donations-actions .btn--primary {
           background: var(--color-accent);
           border-color: var(--color-accent);
           color: #fff;
         }
+        
         #interchange-scroll .donations-actions .btn:hover {
           border-color: var(--color-border-strong);
           background: var(--color-surface-alt);
         }
+        
         #interchange-scroll .donations-actions .btn--primary:hover {
           background: #1d4ed8;
         }
-  #interchange-scroll .btn--icon svg { vertical-align: middle; }
-        /* Col spans (desktop) */
+        
+        #interchange-scroll .btn--icon svg { 
+          vertical-align: middle; 
+        }
+        
+        /* Col spans */
         #interchange-scroll .donations-grid .span-12 { grid-column: span 12; }
         #interchange-scroll .donations-grid .span-8 { grid-column: span 8; }
         #interchange-scroll .donations-grid .span-7 { grid-column: span 7; }
         #interchange-scroll .donations-grid .span-6 { grid-column: span 6; }
         #interchange-scroll .donations-grid .span-5 { grid-column: span 5; }
         #interchange-scroll .donations-grid .span-4 { grid-column: span 4; }
+        
         @media (max-width: 900px) {
           #interchange-scroll .donations-grid {
             grid-template-columns: repeat(6, 1fr);
@@ -1296,8 +1302,11 @@ const ExchangeSections = () => {
           #interchange-scroll .donations-grid .span-7,
           #interchange-scroll .donations-grid .span-6,
           #interchange-scroll .donations-grid .span-5,
-          #interchange-scroll .donations-grid .span-4 { grid-column: span 6; }
+          #interchange-scroll .donations-grid .span-4 { 
+            grid-column: span 6; 
+          }
         }
+        
         @media (max-width: 600px) {
           #interchange-scroll .donations-grid {
             grid-template-columns: repeat(4, 1fr);
@@ -1306,9 +1315,12 @@ const ExchangeSections = () => {
           #interchange-scroll .donations-grid .span-7,
           #interchange-scroll .donations-grid .span-6,
           #interchange-scroll .donations-grid .span-5,
-          #interchange-scroll .donations-grid .span-4 { grid-column: span 4; }
-          /* Espaço extra para evitar que o primeiro card fique encostado no topo após scroll */
-          #interchange-scroll #como-ajudar .donations-grid { margin-top: 0.75rem; }
+          #interchange-scroll .donations-grid .span-4 { 
+            grid-column: span 4; 
+          }
+          #interchange-scroll #como-ajudar .donations-grid { 
+            margin-top: 0.75rem; 
+          }
         }
       `}</style>
       {/* Conteúdo principal */}
