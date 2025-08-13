@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../useI18n.js';
 import { Github, Linkedin, Instagram } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { motionProps } from '../utils/motion';
@@ -182,6 +183,7 @@ const AccordionGallery = ({ images = [], positions = {}, delay = 0, compact = fa
 // Seção Hero do intercâmbio
 const ExchangeHero = () => {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   return (
     <motion.section
       id="exchange-hero"
@@ -207,13 +209,13 @@ const ExchangeHero = () => {
       {...motionProps.pageEnter(0)}
     >
       <div className="container" style={{ textAlign: 'center' }}>
-        <motion.h1 
+        <motion.h1
           className="exchange-heading"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Tales in Germany
+          {t('exchange_hero_title')}
         </motion.h1>
         
         {/* Conteúdo em duas colunas: texto + imagem lateral */}
@@ -239,26 +241,10 @@ const ExchangeHero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
           >
-            <p style={{ marginBottom: '1rem' }}>
-              Oi, prazer! Me chamo
-              <span style={{ color: '#93c5fd', fontWeight: 700 }}> Tales Ivalque Taveira de Freitas</span>,
-              {' '}sou estudante de Engenharia de Computação no Insper, onde sou bolsista integral. Nascido e criado em
-              <span style={{ color: '#93c5fd', fontWeight: 600 }}> Juazeiro do Norte-CE</span>,
-              {' '}mudei-me para Fortaleza e, depois, para São Paulo em busca de melhores oportunidades. Você pode me
-              {' '}conhecer melhor em <a href="#criacao" style={{ color: '#93c5fd', textDecoration: 'underline dotted' }}>Minha Trajetória</a>.
-            </p>
-            <p style={{ marginBottom: '1rem' }}>
-              Muito em breve, vou realizar o sonho de fazer um intercâmbio na
-              <a href="#thi" style={{ color: '#93c5fd', textDecoration: 'underline dotted' }}> Technische Hochschule Ingolstadt (THI)</a>,
-              {' '}na Alemanha.
-            </p>
-            <p style={{ marginBottom: '1rem' }}>
-              Por ser aluno bolsista no Insper, todos os custos relacionados a taxas de adesão e mensalidades já estão cobertos. Porém, ainda preciso custear as despesas da viagem: acomodação, alimentação, passagens, entre outras.
-            </p>
-            <p style={{ marginBottom: '1.25rem' }}>
-              Criei este site para arrecadar recursos e compartilhar minhas experiências durante o intercâmbio. Se puder,
-              {' '}<strong style={{ color: '#e2e8f0' }}> apoie este sonho!</strong>
-            </p>
+            <p style={{ marginBottom: '1rem' }} dangerouslySetInnerHTML={{ __html: t('exchange_hero_p1') }} />
+            <p style={{ marginBottom: '1rem' }} dangerouslySetInnerHTML={{ __html: t('exchange_hero_p2') }} />
+            <p style={{ marginBottom: '1rem' }} dangerouslySetInnerHTML={{ __html: t('exchange_hero_p3') }} />
+            <p style={{ marginBottom: '1.25rem' }} dangerouslySetInnerHTML={{ __html: t('exchange_hero_p4') }} />
 
             <motion.div style={{ textAlign: 'left', display: 'flex', gap: '0.8rem', justifyContent: 'flex-start', flexWrap: 'wrap' }} {...motionProps.scaleIn(0.6)}>
               <Button
@@ -267,21 +253,21 @@ const ExchangeHero = () => {
                 variant="primary"
                 style={{ fontSize: '1.05rem', padding: '0.9rem 2.2rem' }}
               >
-                Apoiar Agora
+                {t('exchange_hero_cta_support')}
               </Button>
               <Button
                 as="button"
                 onClick={() => document.getElementById('planejamento')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                 style={{ fontSize: '1.05rem', padding: '0.9rem 2.1rem' }}
               >
-                Ver Custos
+                {t('exchange_hero_cta_costs')}
               </Button>
               <Button
                 as="button"
                 onClick={() => document.getElementById('thi')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                 style={{ fontSize: '1.05rem', padding: '0.9rem 2.1rem' }}
               >
-                Instituição
+                {t('exchange_hero_cta_institution')}
               </Button>
             </motion.div>
           </motion.div>
@@ -314,6 +300,7 @@ const ExchangeHero = () => {
 // Seção: Criação
 const CriacaoSection = () => {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   return (
     <section id="criacao" className="section" style={{
       // padding-top removido; o alinhamento vertical será controlado pelo scroll-padding do contêiner
@@ -334,28 +321,19 @@ const CriacaoSection = () => {
       scrollMarginTop: `0px`
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle" style={{ marginBottom: '2rem' }}>Criação</h2>
+        <h2 className="exchange-subtitle" style={{ marginBottom: '2rem' }}>{t('earlyLife')}</h2>
         <motion.div
           className="exchange-panel"
           style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left', fontSize: 'clamp(1rem, 2.3vw, 1.125rem)', lineHeight: 1.8, letterSpacing: '0.2px', color: '#cbd5e1', overflowWrap: 'anywhere', hyphens: 'auto' }}
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <p>
-            Eu nasci no ano de 2001 em <Highlight>Juazeiro do Norte-CE</Highlight>, filho de <Highlight>Avani Taveira do Nascimento</Highlight> e <Highlight>Wigli Ivalque de Freitas Júnior</Highlight>. Meu pai trabalhava como mecânico e minha mãe tinha um pequeno negócio de artes, o que não permitia esbanjo, mas garantia uma vida confortável.
-          </p>
-
-          <p>
-            Cresci cercado pelas ferramentas do meu pai e pelos quadros que minha mãe pintava, e esse ambiente me despertou desde cedo criatividade e raciocínio. Em casa, isso se traduzia em desmontar e remontar brinquedos e, de vez em quando, até aparelhos eletrônicos mais simples.
-          </p>
-
-          <p>
-            Outra coisa que meus pais sempre reforçaram foi a importância da Educação. Minha mãe fazia parte da única geração com formação superior na família, enquanto meu pai não teve essa oportunidade. Por isso, sempre me incentivaram a estudar e buscar conhecimento.
-          </p>
-
-          <p>
-            Somando meus interesses ao incentivo constante deles, comecei cedo a me destacar e a buscar desafios e oportunidades de aprender mais. Eles levavam essa dedicação tão a sério que me mudaram de colégio três vezes para garantir que eu tivesse acesso a uma educação no mesmo nível da minha vontade de aprender.
-          </p>
+          <>
+            <p>{t('earlyLife_p1')}</p>
+            <p>{t('earlyLife_p2')}</p>
+            <p>{t('earlyLife_p3')}</p>
+            <p>{t('earlyLife_p4')}</p>
+          </>
         </motion.div>
         <AccordionGallery
           images={[criacao1, criacao2, criacao3]}
@@ -370,6 +348,7 @@ const CriacaoSection = () => {
 // Seção: Destaque Olímpico
 const DestaqueOlimpicoSection = () => {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   return (
     <section id="destaque-olimpico" className="section" style={{
       // padding-top removido
@@ -389,29 +368,19 @@ const DestaqueOlimpicoSection = () => {
       scrollMarginTop: `0px`
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle" style={{ marginBottom: '2rem' }}>Destaque Olímpico</h2>
+        <h2 className="exchange-subtitle" style={{ marginBottom: '2rem' }}>{t('olympiad')}</h2>
         <motion.div
           className="exchange-panel exchange-panel--alt"
           style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left', fontSize: 'clamp(1rem, 2.3vw, 1.125rem)', lineHeight: 1.8, letterSpacing: '0.2px', color: '#cbd5e1', overflowWrap: 'anywhere', hyphens: 'auto' }}
           {...motionProps.fadeInUp(0.05)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <p>
-            Meu último colégio foi o <Highlight>Colégio Objetivo</Highlight> da minha cidade, onde fiquei do 4º ano do Fundamental até o 2º ano do Ensino Médio.
-            Lá fui apresentado ao mundo das <Highlight>Olimpíadas</Highlight>, que serviram como um desafio extra no dia a dia da escola e, mais tarde, como um ótimo caminho para
-            <Highlight> novas oportunidades</Highlight>.
-          </p>
-          <p>
-            Já no 6º ano, conquistei minhas primeiras medalhas em provas como a <Highlight>OBA</Highlight>, a <Highlight>OBI</Highlight> e a
-            <Highlight> Mathématiques Sans Frontières</Highlight>. Desde então, foi uma dedicação intensa que rendeu um quadro expressivo de participações e conquistas.
-          </p>
-          <p>
-            Essa trajetória abriu portas, inclusive para representar o colégio na <Highlight>QUANTA 2015</Highlight>, em Lucknow, Índia, que foi minha primeira oportunidade internacional.
-            Além das provas, tive um pequeno destaque ao atuar como tradutor do representante da delegação no discurso final da competição.
-          </p>
-          <p style={{ marginBottom: 0 }}>
-            Mas acho que a maior oportunidade que as Olímpiadas me deram foi a bolsa de estudos integral no <Highlight>Farias Brito</Highlight> em 2018 para estudar na sua turma <Highlight>ITA/IME</Highlight>, onde concluí meu Ensino Médio e desenvolvi ainda mais meu conhecimento.
-          </p>
+          <>
+            <p>{t('olympiad_p1')}</p>
+            <p>{t('olympiad_p2')}</p>
+            <p>{t('olympiad_p3')}</p>
+            <p style={{ marginBottom: 0 }}>{t('olympiad_p4')}</p>
+          </>
         </motion.div>
         <AccordionGallery
           images={[destaque1, destaque2, destaque3]}
@@ -426,6 +395,7 @@ const DestaqueOlimpicoSection = () => {
 // Seção: Primeira independência
 const PrimeiraIndependenciaSection = () => {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   return (
     <section id="primeira-independencia" className="section" style={{
       // padding-top removido
@@ -441,22 +411,18 @@ const PrimeiraIndependenciaSection = () => {
       scrollMarginTop: `0px`
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle" style={{ marginBottom: '2rem' }}>Primeira independência</h2>
+        <h2 className="exchange-subtitle" style={{ marginBottom: '2rem' }}>{t('firstIndependence')}</h2>
         <motion.div
           className="exchange-panel"
           style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left' }}
           {...motionProps.fadeInUp(0.1)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <p>
-            Essa bolsa foi uma oportunidade ímpar, me permitindo estudar na maior instituição de ensino preparatório para o <Highlight>ITA</Highlight> do país. Sendo aluno Olímpico, conheci o Instituto Tecnológico já no 9º ano, e o coloquei como meta principal da minha trajetória acadêmica. Seria um sonho conquistar o vestibular mais difícil do país.
-          </p>
-          <p>
-            Mas, junto com essa oportunidade, veio a necessidade de me tornar mais independente. A bolsa me garantia o colégio, mas eu precisei me mudar para Fortaleza sozinho, enfrentando novos desafios e responsabilidades. Foi uma época difícil, mudando de apartamento a cada ano, mas aprendi muito sobre resiliência e adaptação.
-          </p>
-          <p style={{ marginBottom: 0 }}>
-            Ao todo, foram 3 anos e meio de muito aprendizado, tanto acadêmico quanto pessoal. Após concluir o Ensino Médio, passei ainda 2 anos tentando a aprovação no ITA, obtendo sucesso moderado, com aprovações em vestibulares "menores" como EFOOM e Escola Naval, e chegando perto da aprovação no ITA em 2020, quando fui cortado pela minha nota de Química.
-          </p>
+          <>
+            <p>{t('firstIndependence_p1')}</p>
+            <p>{t('firstIndependence_p2')}</p>
+            <p style={{ marginBottom: 0 }}>{t('firstIndependence_p3')}</p>
+          </>
         </motion.div>
         <AccordionGallery
           images={[fortal1, fortal2, fortal3]}
@@ -471,6 +437,7 @@ const PrimeiraIndependenciaSection = () => {
 // Seção: Bolsa de Estudos no Insper
 const BolsaInsperSection = () => {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   return (
     <section id="bolsa-insper" className="section" style={{
       // padding-top removido
@@ -486,22 +453,18 @@ const BolsaInsperSection = () => {
       scrollMarginTop: `0px`
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle" style={{ marginBottom: '2rem' }}>Bolsa de Estudos no Insper</h2>
+        <h2 className="exchange-subtitle" style={{ marginBottom: '2rem' }}>{t('insper')}</h2>
         <motion.div
           className="exchange-panel exchange-panel--alt"
           style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left' }}
           {...motionProps.fadeInUp(0.15)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <p>
-            No meio da pandemia da Covid, em 2021, eu conheci o Insper. Era uma instituição que rivalizava o ITA em termos de qualidade de ensino e superior em infraestrutura. Apliquei para o Programa de Bolsas e Vestibular ainda no primeiro semestre e fui aprovado de primeira para o curso de Engenharia de Computação!
-          </p>
-          <p>
-            Graças a essa bolsa, pude me mudar para a Toca da Raposa, a moradia para bolsistas do Insper e de fora de São Paulo, onde conheci muitas pessoas, com histórias e culturas diferentes, e que se tornaram grandes amigos. E parte dessas pessoas se tornaram meus atuais colegas de apartamento, com quem divido minhas angústias e conquistas, se tornando uma segunda família.
-          </p>
-          <p style={{ marginBottom: 0 }}>
-            Desde então, foram 4 anos cheios de oportunidades, desafios e aprendizados. Participei de várias entidades estudantis, projetos e eventos que ampliaram minha visão de mundo e me conectaram com pessoas incríveis. Agora, a bolsa abre mais uma oportunidade: o intercâmbio na Alemanha, que é um sonho antigo e uma chance de expandir ainda mais meus horizontes acadêmicos e profissionais.
-          </p>
+          <>
+            <p>{t('insper_p1')}</p>
+            <p>{t('insper_p2')}</p>
+            <p style={{ marginBottom: 0 }}>{t('insper_p3')}</p>
+          </>
         </motion.div>
         <AccordionGallery
           images={[insper1, insper2, insper3, insper4, insper5, insper6]}
@@ -516,6 +479,7 @@ const BolsaInsperSection = () => {
 // Seção de Planejamento Financeiro
 const PlanningSection = () => {
   const isMobile = useIsMobile();
+  const { t, formatNumber, formatCurrency } = useI18n();
   const rate = Number(campaignData?.exchangeRate?.eurToBrl || 0);
   const asOf = campaignData?.exchangeRate?.asOf || '';
   return (
@@ -534,7 +498,7 @@ const PlanningSection = () => {
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="exchange-subtitle exchange-subtitle--red" style={{ margin: '0.25rem 0 0.6rem' }}>
-          Planejamento Financeiro
+          {useI18n().t('planning')}
         </h2>
 
         <motion.div
@@ -543,124 +507,98 @@ const PlanningSection = () => {
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <table className="budget-table" aria-label="Planejamento Financeiro">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Mínimo (€)</th>
-                <th>Esperado (€)</th>
-                <th>Mínimo (R$)</th>
-                <th>Esperado (R$)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Mensalidades variáveis */}
-              <tr>
-                <td>Acomodação</td>
-                <td>385,00</td>
-                <td>385,00</td>
-                <td>2.434,97</td>
-                <td>2.434,97</td>
-              </tr>
-              <tr>
-                <td>Alimentação</td>
-                <td>205,40</td>
-                <td>289,36</td>
-                <td>1.298,99</td>
-                <td>1.829,44</td>
-              </tr>
-              <tr>
-                <td>Transporte</td>
-                <td>38,00</td>
-                <td>60,00</td>
-                <td>240,33</td>
-                <td>379,48</td>
-              </tr>
-              <tr>
-                <td>Despesas domésticas</td>
-                <td>50,00</td>
-                <td>50,00</td>
-                <td>316,23</td>
-                <td>316,23</td>
-              </tr>
-              <tr>
-                <td>Plano de celular</td>
-                <td>30,00</td>
-                <td>40,00</td>
-                <td>189,74</td>
-                <td>252,99</td>
-              </tr>
-              <tr>
-                <td>Seguro saúde</td>
-                <td>144,00</td>
-                <td>144,00</td>
-                <td>910,13</td>
-                <td>910,13</td>
-              </tr>
-              <tr className="row-subtotal">
-                <td>Subtotal mensal</td>
-                <td>852,40</td>
-                <td>968,36</td>
-                <td>5.391,08</td>
-                <td>6.124,49</td>
-              </tr>
-              <tr className="row-semester">
-                <td>Semestre (×6)</td>
-                <td>5.114,40</td>
-                <td>5.810,16</td>
-                <td>32.346,48</td>
-                <td>36.746,94</td>
-              </tr>
-              {/* Custos únicos */}
-              <tr className="row-fixed-start">
-                <td>Taxas de entrada do apartamento</td>
-                <td>285,00</td>
-                <td>285,00</td>
-                <td>1.802,51</td>
-                <td>1.802,51</td>
-              </tr>
-              <tr>
-                <td>Depósito</td>
-                <td>770,00</td>
-                <td>770,00</td>
-                <td>4.869,94</td>
-                <td>4.869,94</td>
-              </tr>
-              <tr>
-                <td>Permissão de residência</td>
-                <td>100,00</td>
-                <td>120,00</td>
-                <td>632,46</td>
-                <td>758,95</td>
-              </tr>
-              <tr>
-                <td>Passagens aéreas</td>
-                <td></td>
-                <td></td>
-                <td>5.000,00</td>
-                <td>6.500,00</td>
-              </tr>
-              <tr>
-                <td>Reserva de emergência</td>
-                <td></td>
-                <td></td>
-                <td>5.000,00</td>
-                <td>5.000,00</td>
-              </tr>
-              <tr className="row-total">
-                <td>Total estimado</td>
-                <td></td>
-                <td></td>
-                <td>49.651,39</td>
-                <td>55.678,34</td>
-              </tr>
-            </tbody>
-          </table>
+          {(() => {
+            const rows = [
+              { key: 'cost_accommodation', minEur: 385.00, expEur: 385.00, minBrl: 2434.97, expBrl: 2434.97 },
+              { key: 'cost_food', minEur: 205.40, expEur: 289.36, minBrl: 1298.99, expBrl: 1829.44 },
+              { key: 'cost_transport', minEur: 38.00, expEur: 60.00, minBrl: 240.33, expBrl: 379.48 },
+              { key: 'cost_household', minEur: 50.00, expEur: 50.00, minBrl: 316.23, expBrl: 316.23 },
+              { key: 'cost_phone', minEur: 30.00, expEur: 40.00, minBrl: 189.74, expBrl: 252.99 },
+              { key: 'cost_health', minEur: 144.00, expEur: 144.00, minBrl: 910.13, expBrl: 910.13 },
+            ];
+            const subtotal = rows.reduce((acc, r) => ({
+              minEur: acc.minEur + r.minEur,
+              expEur: acc.expEur + r.expEur,
+              minBrl: acc.minBrl + r.minBrl,
+              expBrl: acc.expBrl + r.expBrl
+            }), { minEur: 0, expEur: 0, minBrl: 0, expBrl: 0 });
+            const semester = {
+              minEur: subtotal.minEur * 6,
+              expEur: subtotal.expEur * 6,
+              minBrl: subtotal.minBrl * 6,
+              expBrl: subtotal.expBrl * 6,
+            };
+            const fixed = [
+              { key: 'cost_apartmentFees', minEur: 285.00, expEur: 285.00, minBrl: 1802.51, expBrl: 1802.51 },
+              { key: 'cost_deposit', minEur: 770.00, expEur: 770.00, minBrl: 4869.94, expBrl: 4869.94 },
+              { key: 'cost_residencePermit', minEur: 100.00, expEur: 120.00, minBrl: 632.46, expBrl: 758.95 },
+              { key: 'cost_airfare', minEur: null, expEur: null, minBrl: 5000.00, expBrl: 6500.00 },
+              { key: 'cost_emergency', minEur: null, expEur: null, minBrl: 5000.00, expBrl: 5000.00 }
+            ];
+            const total = fixed.reduce((acc, r) => ({
+              minBrl: acc.minBrl + (r.minBrl || 0),
+              expBrl: acc.expBrl + (r.expBrl || 0)
+            }), { minBrl: semester.minBrl, expBrl: semester.expBrl });
+            return (
+              <table className="budget-table" aria-label={t('planning')}>
+                <thead>
+                  <tr>
+                    <th>{t('table_item')}</th>
+                    <th>{t('table_minEuro')}</th>
+                    <th>{t('table_expEuro')}</th>
+                    <th>{t('table_minBRL')}</th>
+                    <th>{t('table_expBRL')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map(r => (
+                    <tr key={r.key}>
+                      <td>{t(r.key)}</td>
+                      <td>{formatNumber(r.minEur, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                      <td>{formatNumber(r.expEur, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                      <td>{formatCurrency(r.minBrl, 'BRL')}</td>
+                      <td>{formatCurrency(r.expBrl, 'BRL')}</td>
+                    </tr>
+                  ))}
+                  <tr className="row-subtotal">
+                    <td>{t('cost_subtotalMonthly')}</td>
+                    <td>{formatNumber(subtotal.minEur, { minimumFractionDigits: 2 })}</td>
+                    <td>{formatNumber(subtotal.expEur, { minimumFractionDigits: 2 })}</td>
+                    <td>{formatCurrency(subtotal.minBrl, 'BRL')}</td>
+                    <td>{formatCurrency(subtotal.expBrl, 'BRL')}</td>
+                  </tr>
+                  <tr className="row-semester">
+                    <td>{t('cost_semester')}</td>
+                    <td>{formatNumber(semester.minEur, { minimumFractionDigits: 2 })}</td>
+                    <td>{formatNumber(semester.expEur, { minimumFractionDigits: 2 })}</td>
+                    <td>{formatCurrency(semester.minBrl, 'BRL')}</td>
+                    <td>{formatCurrency(semester.expBrl, 'BRL')}</td>
+                  </tr>
+                  {fixed.map(r => (
+                    <tr key={r.key} className={r.key === 'cost_apartmentFees' ? 'row-fixed-start' : undefined}>
+                      <td>{t(r.key)}</td>
+                      <td>{r.minEur == null ? '' : formatNumber(r.minEur, { minimumFractionDigits: 2 })}</td>
+                      <td>{r.expEur == null ? '' : formatNumber(r.expEur, { minimumFractionDigits: 2 })}</td>
+                      <td>{formatCurrency(r.minBrl, 'BRL')}</td>
+                      <td>{formatCurrency(r.expBrl, 'BRL')}</td>
+                    </tr>
+                  ))}
+                  <tr className="row-total">
+                    <td>{t('cost_totalEstimated')}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{formatCurrency(total.minBrl, 'BRL')}</td>
+                    <td>{formatCurrency(total.expBrl, 'BRL')}</td>
+                  </tr>
+                </tbody>
+              </table>
+            );
+          })()}
           {/* Linha de cotação abaixo da tabela */}
           <div className="rate-row" style={{ marginTop: 10, paddingTop: 8, borderTop: '1px dashed var(--color-border)' }}>
             <small style={{ color: 'var(--color-text-secondary)' }}>
-              Cotação usada: 1 € = R$ {rate.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}
-              {' '}<span style={{ color: 'var(--color-text-muted)' }}>(em {asOf || '--/--/---- --:--'})</span>
+              {t('rate_used')}: 1 € = R$ {formatNumber(rate, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}
+              {' '}<span style={{ color: 'var(--color-text-muted)' }}>({t('date_in')} {asOf || '--/--/---- --:--'})</span>
             </small>
           </div>
         </motion.div>
@@ -672,6 +610,7 @@ const PlanningSection = () => {
 // Seção Como Ajudar
 const ExchangeContact = () => {
   const isMobile = useIsMobile();
+  const { t, formatCurrency, formatDate } = useI18n();
   const goal = Number(campaignData.goalBRL || 0);
   const raised = Number(campaignData.raisedBRL || 0);
   const pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
@@ -681,9 +620,11 @@ const ExchangeContact = () => {
     if (!raw) return '';
     const d = new Date(raw);
     if (isNaN(d.getTime())) return String(raw);
-    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+    // formatDate vindo do escopo superior
+    return formatDate(d, { dateStyle: 'short', timeStyle: 'short' });
   };
   const lastUpdated = formatLastUpdated(lastUpdatedRaw);
+  // t já disponível via hook acima
   return (
     <section id="como-ajudar" className="section" style={{
       // padding-top removido
@@ -705,7 +646,7 @@ const ExchangeContact = () => {
           marginBottom: '1.5rem',
           fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : undefined
         }}>
-          Como Ajudar
+          {t('howHelp')}
         </h2>
         {/* Painel de contribuintes movido para seção final */}
 
@@ -724,8 +665,8 @@ const ExchangeContact = () => {
           {/* Progresso da campanha (agora dentro do mesmo painel para igualar a largura) */}
           <div style={{ marginBottom: '1rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', color: 'var(--color-text-secondary)', fontSize: 14, gap: 12 }}>
-              <span>Arrecadado: R$ {raised.toLocaleString('pt-BR')}</span>
-              <span>Meta: R$ {goal.toLocaleString('pt-BR')} ({pct}%)</span>
+              <span>{t('raised')}: {formatCurrency(raised, 'BRL')}</span>
+              <span>{t('goal')}: {formatCurrency(goal, 'BRL')} ({pct}%)</span>
             </div>
             <div style={{ height: 10, background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 999, overflow: 'hidden', marginTop: 6 }}>
               <div style={{ width: `${pct}%`, height: '100%', background: 'linear-gradient(90deg, var(--color-accent), #1d4ed8)', transition: 'width .4s ease' }} />
@@ -733,7 +674,7 @@ const ExchangeContact = () => {
             {lastUpdated ? (
               <div style={{ marginTop: 6, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 8, color: 'var(--color-text-muted)', fontSize: 12 }}>
                 <span style={{ width: 8, height: 8, borderRadius: 999, background: 'var(--color-accent)', display: 'inline-block' }} />
-                <span>Atualizado: {lastUpdated}</span>
+                <span>{t('updated')}: {lastUpdated}</span>
               </div>
             ) : null}
           </div>
@@ -742,8 +683,8 @@ const ExchangeContact = () => {
           <div className="donations-grid">
             {/* Card PIX */}
             <div className="span-7" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.25rem' }}>
-              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.15rem', letterSpacing: '.3px' }}>PIX</h4>
-              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Escaneie o QR Code ou copie a chave para doar via PIX.</p>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.15rem', letterSpacing: '.3px' }}>{t('pix')}</h4>
+              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>{t('scanPix')}</p>
               <div style={{ display: 'flex', gap: 16, alignItems: isMobile ? 'flex-start' : 'center', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row' }}>
                 {/* QRCode real */}
                 <div style={{
@@ -762,7 +703,7 @@ const ExchangeContact = () => {
                     {pixKey}
                   </div>
                   <div className="donations-actions" style={{ marginTop: 10 }}>
-                    <Button as="button" onClick={() => navigator.clipboard?.writeText(pixKey)} variant="primary">Copiar chave</Button>
+                    <Button as="button" onClick={() => navigator.clipboard?.writeText(pixKey)} variant="primary">{t('copyKey')}</Button>
                   </div>
                 </div>
               </div>
@@ -770,8 +711,8 @@ const ExchangeContact = () => {
 
             {/* Card Wise */}
             <div className="span-5" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.25rem' }}>
-              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.15rem', letterSpacing: '.3px' }}>Transferência internacional (Wise)</h4>
-              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Use os dados abaixo para transferência direta para a conta internacional.</p>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.15rem', letterSpacing: '.3px' }}>{t('intlTransfer')}</h4>
+              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>{t('useData')}</p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <div>
                   <small style={{ color: 'var(--color-text-muted)' }}>Nome</small>
@@ -794,8 +735,8 @@ const ExchangeContact = () => {
 
             {/* Card TED */}
             <div className="span-5" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.1rem' }}>
-              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>TED</h4>
-              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>Dados para transferência nacional.</p>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>{t('ted')}</h4>
+              <p style={{ margin: '0.4rem 0 0.9rem', color: 'var(--color-text-secondary)' }}>{t('tedData')}</p>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--color-text-secondary)' }}>
                 <li>Banco: 0260 - Nubank</li>
                 <li>Agência: 0001</li>
@@ -807,10 +748,10 @@ const ExchangeContact = () => {
 
             {/* Card Contatos + Compartilhe */}
             <div className="span-7" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 12, padding: '1.1rem' }}>
-              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>Contatos e Compartilhar</h4>
+              <h4 style={{ margin: 0, color: 'var(--color-text-primary)', fontSize: '1.05rem', letterSpacing: '.3px' }}>{t('contactsShare')}</h4>
               <div style={{ display: 'grid', gap: 10, gridTemplateColumns: '1fr' }}>
                 <div>
-                  <p style={{ margin: '0.4rem 0 0.6rem', color: 'var(--color-text-secondary)' }}>Me encontre nas redes:</p>
+                  <p style={{ margin: '0.4rem 0 0.6rem', color: 'var(--color-text-secondary)' }}>{t('networks')}</p>
                   <div className="donations-actions" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                     <Button href="https://www.linkedin.com/in/tales-ivalque" target="_blank" rel="noopener noreferrer" className="btn--icon">
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -830,9 +771,9 @@ const ExchangeContact = () => {
                   </div>
                 </div>
                 <div>
-                  <p style={{ margin: '0.6rem 0 0.6rem', color: 'var(--color-text-secondary)' }}>Se não puder contribuir agora, compartilhar já ajuda!</p>
+                  <p style={{ margin: '0.6rem 0 0.6rem', color: 'var(--color-text-secondary)' }}>{t('shareHelp')}</p>
                   <div className="donations-actions">
-                    <Button as="button" onClick={() => navigator.clipboard?.writeText(window.location.href)} variant="primary">Copiar link</Button>
+                    <Button as="button" onClick={() => navigator.clipboard?.writeText(window.location.href)} variant="primary">{t('share')}</Button>
                   </div>
                 </div>
               </div>
@@ -849,6 +790,7 @@ const ExchangeContact = () => {
 // Seção da Instituição de Destino -> THI (última seção)
 const UniversitySection = () => {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   // No desktop, evitamos minHeight para não sobrar espaço após o fim do conteúdo
   return (
     <section id="thi" className="section" style={{
@@ -875,18 +817,12 @@ const UniversitySection = () => {
           {...motionProps.fadeInUp(0)}
         >
           <span className="panel-accent" aria-hidden="true" />
-          <p>
-            A THI é uma universidade de ciências aplicadas na Baviera, muito forte em engenharia e tecnologia. Para mim, é a chance de viver um semestre imerso em uma cultura diferente, encarar o desafio de sair da zona de conforto e conectar o que venho construindo até aqui com novas formas de aprender e resolver problemas.
-          </p>
-          <p>
-            A oportunidade veio pela parceria de mobilidade entre o <Highlight>Insper</Highlight> e a <Highlight>THI</Highlight>, que reconhece créditos e viabiliza o intercâmbio sem mensalidade por lá. O <Highlight>Programa de Bolsas</Highlight> do Insper cobre minha formação aqui no Brasil, e eu corro atrás do restante para tornar essa etapa possível.
-          </p>
-          <p>
-            Meu plano é cursar matérias que ainda me faltam, como Economia para Engenharia, revisitar algumas que gostei muito com um novo olhar, participar de projetos e trazer esse aprendizado de volta. No meio tempo, quero aproveitar para conhecer novos lugares, construir boas relações e ampliar meu repertório. Quero voltar com bagagem técnica e histórias de quem aprendeu e contribuiu.
-          </p>
-          <p style={{ marginBottom: 0 }}>
-            Essa oportunidade conecta a curiosidade lá de Juazeiro, a base que construí no Insper e a vontade de construir algo maior. Vou registrar tudo por aqui e, se puder, fica o convite para acompanhar e apoiar.
-          </p>
+          <>
+            <p>{t('university_p1')}</p>
+            <p>{t('university_p2')}</p>
+            <p>{t('university_p3')}</p>
+            <p style={{ marginBottom: 0 }}>{t('university_p4')}</p>
+          </>
         </motion.div>
 
         <AccordionGallery
@@ -902,6 +838,7 @@ const UniversitySection = () => {
 // Seção final: Contribuintes
 const ContributorsSection = () => {
   const isMobile = useIsMobile();
+  const { t, formatCurrency } = useI18n();
   // Fallback: se não houver contribuidores no campaign.js, usa o arquivo .txt
   const fallbackContributors = (contributorsRaw || '')
     .split('\n')
@@ -925,7 +862,7 @@ const ContributorsSection = () => {
       scrollMarginTop: `0px`
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="exchange-subtitle">Contribuintes</h2>
+        <h2 className="exchange-subtitle">{t('contributors')}</h2>
         <div className="exchange-panel" style={{ maxWidth: 1100, margin: '0 auto 1.25rem', textAlign: 'left' }}>
           <span className="panel-accent" aria-hidden="true" />
           {Array.isArray(contributors) && contributors.length > 0 ? (
@@ -935,7 +872,7 @@ const ContributorsSection = () => {
                   <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'baseline' }}>
                     <strong style={{ color: 'var(--color-text-primary)' }}>{c.name || 'Anônimo'}</strong>
                     {c.amountBRL != null && c.amountBRL !== '' ? (
-                      <span style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>R$ {(Number(c.amountBRL) || 0).toLocaleString('pt-BR')}</span>
+                      <span style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>{formatCurrency(Number(c.amountBRL) || 0, 'BRL')}</span>
                     ) : null}
                   </div>
                   {c.message ? <div style={{ color: 'var(--color-text-secondary)', marginTop: 4, fontSize: 14 }}>{c.message}</div> : null}
@@ -943,7 +880,7 @@ const ContributorsSection = () => {
               ))}
             </ul>
           ) : (
-            <p style={{ color: 'var(--color-text-secondary)', margin: 0 }}>Ainda não há contribuições registradas.</p>
+              <p style={{ color: 'var(--color-text-secondary)', margin: 0 }}>{t('contributors_empty')}</p>
           )}
         </div>
       </div>
@@ -1129,19 +1066,20 @@ const LandscapeWarning = () => (
 );
 
 // Lista de seções fora do componente (boas práticas)
-const SECTIONS = [
-  { id: 'exchange-hero', label: 'Início' },
-  { id: 'criacao', label: 'Criação' },
-  { id: 'destaque-olimpico', label: 'Destaque Olímpico' },
-  { id: 'primeira-independencia', label: 'Primeira Independência' },
-  { id: 'bolsa-insper', label: 'Bolsa Insper' },
-  { id: 'planejamento', label: 'Financeiro' },
-  { id: 'como-ajudar', label: 'Como Ajudar' },
-  { id: 'thi', label: 'THI' },
+const BASE_SECTIONS = [
+  { id: 'exchange-hero', labelPt: 'Início', labelEn: 'Start' },
+  { id: 'criacao', labelPt: 'Criação', labelEn: 'Early Life' },
+  { id: 'destaque-olimpico', labelPt: 'Destaque Olímpico', labelEn: 'Olympiad Highlights' },
+  { id: 'primeira-independencia', labelPt: 'Primeira Independência', labelEn: 'First Independence' },
+  { id: 'bolsa-insper', labelPt: 'Bolsa Insper', labelEn: 'Insper Scholarship' },
+  { id: 'planejamento', labelPt: 'Financeiro', labelEn: 'Financials' },
+  { id: 'como-ajudar', labelPt: 'Como Ajudar', labelEn: 'How to Help' },
+  { id: 'thi', labelPt: 'THI', labelEn: 'THI' },
 ];
 
 const ExchangeSections = () => {
-  const sections = SECTIONS;
+  const { lang } = useI18n();
+  const sections = BASE_SECTIONS.map(s => ({ id: s.id, label: lang === 'en' ? s.labelEn : s.labelPt }));
   const landscapeBlocked = useLandscapeBlock();
   // Se bloqueado, só mostra o aviso; sem dependência de CSS externo
   if (landscapeBlocked) {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, User, Briefcase, Plane } from 'lucide-react';
+import { Menu, X, User, Briefcase } from 'lucide-react';
+import { useI18n } from '../useI18n.js';
 import './Header.css';
 
 const Header = () => {
@@ -24,6 +25,8 @@ const Header = () => {
   }, [location]);
 
   const isExchangePage = location.pathname === '/' || location.pathname === '/intercambio';
+  const { lang, setLang, t } = useI18n();
+  const toggleLang = () => setLang(lang === 'pt' ? 'en' : 'pt');
 
   // Scroll suave para seções da página de Intercâmbio
   const scrollToSection = (sectionId) => {
@@ -64,7 +67,7 @@ const Header = () => {
                     className="header__nav-link header__nav-link--button"
                   >
                     <User size={18} />
-                      <span>Como Ajudar</span>
+                    <span>{t('howHelp')}</span>
                   </button>
                 </li>
                 <li>
@@ -73,7 +76,7 @@ const Header = () => {
                     className="header__nav-link header__nav-link--button"
                   >
                       <Briefcase size={18} />
-                    <span>Financeiro</span>
+                    <span>{t('finance')}</span>
                   </button>
                   </li>
               </>
@@ -85,13 +88,32 @@ const Header = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button 
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <button
+            onClick={toggleLang}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--color-text-secondary)',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 13,
+              cursor: 'pointer',
+              letterSpacing: '.5px'
+            }}
+            aria-label="Toggle language"
+          >
+            <span style={{ opacity: lang === 'pt' ? 1 : .55 }}>PT</span>
+            <span style={{ margin: '0 4px', opacity: .4 }}>|</span>
+            <span style={{ opacity: lang === 'en' ? 1 : .55 }}>EN</span>
+          </button>
+          <button 
           className="header__mobile-toggle"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
+        </div>
 
         {/* Mobile Navigation */}
         <nav className={`header__mobile-nav ${isMenuOpen ? 'header__mobile-nav--open' : ''}`}>
@@ -102,7 +124,7 @@ const Header = () => {
                 className="header__mobile-nav-link"
               >
                 <User size={20} />
-                <span>Como Ajudar</span>
+                <span>{t('howHelp')}</span>
               </button>
             </li>
             <li>
@@ -111,7 +133,16 @@ const Header = () => {
                 className="header__mobile-nav-link"
               >
                 <Briefcase size={20} />
-                <span>Financeiro</span>
+                <span>{t('finance')}</span>
+              </button>
+            </li>
+            <li style={{ padding: '0.75rem 0 0.25rem' }}>
+              <button
+                onClick={toggleLang}
+                className="header__mobile-nav-link"
+                style={{ background: 'none', border: '1px solid transparent' }}
+              >
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 14 }}>PT | EN</span>
               </button>
             </li>
           </ul>
