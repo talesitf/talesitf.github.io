@@ -16,7 +16,7 @@ const Footer = () => {
           color: '#cbd5e1',
           marginBottom: '0.5rem'
         }}>
-          &copy; 2025 Tales Ferreira. Todos os direitos reservados.
+          &copy; 2025 Tales Taveira. Todos os direitos reservados.
         </p>
         
         <p style={{
