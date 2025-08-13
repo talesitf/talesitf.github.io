@@ -700,7 +700,7 @@ const ExchangeContact = () => {
       // Compensa header fixo - reduzido para menos espaço
       scrollMarginTop: isMobile ? '20px' : '30px'
     }}>
-      <div className="container" style={{ textAlign: 'center', paddingTop: isMobile ? '0.5rem' : 0 }}>
+      <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="exchange-subtitle" style={{
           marginBottom: '1.5rem',
           fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : undefined
