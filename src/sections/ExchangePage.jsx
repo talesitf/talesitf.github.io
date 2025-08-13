@@ -687,7 +687,7 @@ const ExchangeContact = () => {
   return (
     <section id="como-ajudar" className="section" style={{
       // padding-top removido
-      padding: isMobile ? `1.5rem 0 3rem` : '0 0 3rem',
+      padding: isMobile ? `0.5rem 0 3rem` : '0 0 3rem',
       background: 'transparent',
       width: '100%',
       // No mobile deixa altura auto para não cortar grid; em desktop mantém uma altura confortável
@@ -697,12 +697,12 @@ const ExchangeContact = () => {
       scrollSnapAlign: 'start',
       scrollSnapStop: 'always',
       overflow: 'visible',
-      // Compensa header fixo
-      scrollMarginTop: isMobile ? '80px' : '70px'
+      // Compensa header fixo - reduzido para menos espaço
+      scrollMarginTop: isMobile ? '20px' : '30px'
     }}>
-      <div className="container" style={{ textAlign: 'center', paddingTop: isMobile ? '1rem' : 0 }}>
+      <div className="container" style={{ textAlign: 'center', paddingTop: isMobile ? '0.5rem' : 0 }}>
         <h2 className="exchange-subtitle" style={{
-          marginBottom: '2rem',
+          marginBottom: '1.5rem',
           fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : undefined
         }}>
           Como Ajudar
@@ -715,7 +715,7 @@ const ExchangeContact = () => {
             maxWidth: '1100px',
             margin: '0 auto',
             textAlign: 'left',
-            padding: isMobile ? '1rem' : undefined
+            padding: isMobile ? '0.5rem' : undefined
           }}
           {...motionProps.fadeInUp(0.2)}
         >
@@ -753,7 +753,7 @@ const ExchangeContact = () => {
                   overflow: 'hidden',
                   border: '1px solid var(--color-border-strong)',
                   background: 'var(--color-surface-alt)',
-                  alignSelf: isMobile ? 'center' : 'auto'
+                  margin: isMobile ? '0 auto' : '0'
                 }} aria-label="QR Code PIX">
                   <img src={pixQR} alt="QR Code do PIX" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 </div>
